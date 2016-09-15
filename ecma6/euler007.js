@@ -6,6 +6,12 @@
  *
  *  What is the 10 001st prime number?
  */
-function euler007() {
-   return primes.PrimeGenerator(10001).next().value;
-}
+var  euler007 = new EulerProblem({
+   problem: 7,
+   testInput: 6,
+   realInput: 10001,
+
+   solver: function (n) {
+      return primes.PrimeGenerator(n).next().value;
+   }
+});
