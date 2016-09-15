@@ -26,7 +26,7 @@
     <!--<script src="euler016.js"></script>-->
     <!--<script src="euler016.js"></script>-->
     <!--<script src="euler071.js"></script>-->
-    <script src="euler072.js"></script>
+    <!--<script src="euler072.js"></script>-->
 
 </head>
 <body>
@@ -34,30 +34,16 @@
 
     <script>
         $(function() {
-//            output(primes.primeFactors(1820));
-//            outputResult(1, euler001());
-//            outputResult(2, euler002());
-//            outputResult(3, euler003());
-//            outputResult(4, euler004());
-//            outputResult(5, euler005());
-            let p = new EulerProblem(euler006);
-            outputResults(p.test());
-            outputResults(p.solve());
-//            outputResult(6, euler006());
-//            outputResult(7, euler007());
-//            outputResult(8, euler008());
-//            outputResult(9, euler009());
-//            outputResult(10, euler010());
-//            outputResult(11, euler011());
-//            outputResult(12, euler012());
-//            outputResult(13, euler013());
-//            outputResult(14, euler014());
-//            output(gregmath.combinations(40,20));
-//            outputResult(16, euler016());
-//            outputResult(72, euler072());
-//            output(gregmath.gcf(41*37*11*17*17,37*13*197*7));
-//            output(gregmath.lcm(18, 120));
+            const maxProb = 576;
 
+            for (let p = 1; p <= maxProb; p++) {
+                let prob = window["euler" + ("00" + p).slice (-3)];
+                if (prob instanceof EulerProblem) {
+                    output('<hr>');
+                    outputResults(prob.test());
+                    outputResults(prob.solve());
+                }
+            }
         });
     </script>
 </body>

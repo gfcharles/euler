@@ -15,7 +15,7 @@
  *  Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  *
  */
-let euler006 = {
+var euler006 = new EulerProblem({
    problem: 6,
    testInput: 10,
    realInput: 100,
@@ -25,7 +25,7 @@ let euler006 = {
          return Math.pow((n * (n + 1)) / 2, 2) - (n * (n + 1) * (2 * n + 1) / 6);
       },
 
-      bruteForce: function (n) {
+      iterations: function (n) {
          let sumOfSquares = 0;
          let sum = 0;
 
@@ -37,4 +37,4 @@ let euler006 = {
          return sum * sum - sumOfSquares;
       }
    }
-};
+});
