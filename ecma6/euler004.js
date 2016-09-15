@@ -21,11 +21,11 @@ function euler004() {
    };
 
    let palindrome = 0;
-   let yFactor = 100;
+   let yFactor = 101;
    let tests = 0;
 
-   for (let x = 999; x >= 100; x--) {
-      for (let y = x; y>= yFactor; y--) {
+   for (let x = 999; x >= 101; x--) {
+      for (let y = x; y >= yFactor; y--) {
          let prod = x * y;
          if (prod <= palindrome) {
             break;

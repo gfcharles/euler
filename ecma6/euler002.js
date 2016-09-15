@@ -32,6 +32,6 @@ function euler002() {
          sum += val;
       }
    }
-
+   fib.takeRecords()
    return sum;
 }

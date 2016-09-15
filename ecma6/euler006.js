@@ -15,18 +15,26 @@
  *  Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  *
  */
-function euler006() {
-   let n = 100;
+let euler006 = {
+   problem: 6,
+   testInput: 10,
+   realInput: 100,
 
-   // return Math.pow((n * (n+1)) / 2, 2) - (n * (n+1) * (2*n+1) / 6);
+   solvers: {
+      math: function (n) {
+         return Math.pow((n * (n + 1)) / 2, 2) - (n * (n + 1) * (2 * n + 1) / 6);
+      },
 
-   let sumOfSquares = 0;
-   let sum = 0;
+      bruteForce: function (n) {
+         let sumOfSquares = 0;
+         let sum = 0;
 
-   for (let i of Range(1, n)) {
-      sum += i;
-      sumOfSquares += (i * i);
+         for (let i of Range(1, n)) {
+            sum += i;
+            sumOfSquares += (i * i);
+         }
+
+         return sum * sum - sumOfSquares;
+      }
    }
-
-   return sum * sum - sumOfSquares;
-}
+};

@@ -12,7 +12,7 @@ Array.prototype.product = function() {
 function testConst() {
    try {
       const a = 4;
-      a = 3;
+      //a = 3;
       output('Value of a is ' + a);
    } catch (e) {
       output('Caught exception');
@@ -23,6 +23,7 @@ function testConst() {
    output('Value of b.name is ' + b.name);
 }
 
+// output(gregmath.combinations(5,2));
 // function runFactorMap() {
 //
 //    let fm = new FactorMap();
