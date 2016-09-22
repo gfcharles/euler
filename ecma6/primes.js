@@ -31,6 +31,7 @@ let primes = function () {
       function computeNextPrime() {
          for (let i = lastKnownPrime() + 2; ; i += 2) {
             if (checkPrime(i)) {
+               // console.log('computed new prime ' + i);
                return i;
             }
          }
@@ -123,6 +124,30 @@ let primes = function () {
 
       countFactors() {
          return [...this.exponents()].reduce((product, exponent) => product * (exponent + 1), 1);
+      }
+
+      properDevisors() {
+         let results = [];
+         let entries = [...this.entries()];
+         let factors = entries.map(a => a[0]);
+         let powers = entries.map( a => a[1] + 1 );
+
+         let count = this.countFactors();
+
+         for (let i = 0; i < count - 1; i++) {
+            let prod = 1;
+            let r = i;
+
+            for(let j = 0; j < factors.length; j++) {
+               let f = factors[j];
+               let p = r % powers[j];
+               prod *= Math.pow(f, p);
+               r = ((r - p) / powers[j]);
+            }
+            results.push(prod);
+         }
+
+         return results;
       }
 
       static _merge(factorMaps, mergeFunction) {

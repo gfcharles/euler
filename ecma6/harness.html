@@ -6,7 +6,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!--<script src="wu.js"></script>-->
     <script src="utils.js"></script>
+    <script src="gwu.js"></script>
     <script src="primes.js"></script>
+
     <!--<script src="src/gregmath.js"></script>-->
     <!--<script src="scratchpad.js"></script>-->
     <!--<script src="euler001.js"></script>-->
@@ -14,10 +16,10 @@
     <!--<script src="euler003.js"></script>-->
     <!--<script src="euler004.js"></script>-->
     <!--<script src="euler005.js"></script>-->
-    <script src="euler006.js"></script>
+    <!--<script src="euler006.js"></script>-->
     <script src="euler007.js"></script>
-    <!--<script src="euler008.js"></script>-->
-    <!--<script src="euler009.js"></script>-->
+    <script src="euler008.js"></script>
+    <script src="euler009.js"></script>
     <!--<script src="euler010.js"></script>-->
     <!--<script src="euler011.js"></script>-->
     <!--<script src="euler012.js"></script>-->
@@ -25,8 +27,10 @@
     <!--<script src="euler014.js"></script>-->
     <!--<script src="euler016.js"></script>-->
     <!--<script src="euler016.js"></script>-->
+    <script src="euler021.js"></script>
     <!--<script src="euler071.js"></script>-->
     <!--<script src="euler072.js"></script>-->
+    <script src="euler074.js"></script>
 
 </head>
 <body>
@@ -34,11 +38,12 @@
 
     <script>
         $(function() {
-            const maxProb = 576;
+            const maxProb = 570;
 
             for (let p = 1; p <= maxProb; p++) {
                 let prob = window["euler" + ("00" + p).slice (-3)];
                 if (prob instanceof EulerProblem) {
+                    console.log('Solving problem ' + p);
                     output('<hr>');
                     outputResults(prob.test());
                     outputResults(prob.solve());

@@ -8,8 +8,7 @@
 
  Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 */
-
-function euler008() {
+var euler008 = function () {
    const data = `
  73167176531330624919225119674426574742355349194934
  96983520312774506326239578318016984801869478851843
@@ -33,15 +32,21 @@ function euler008() {
  71636269561882670428252483600823257530420752963450   
  `.replace(/\D/g,'');
 
-   const adjacents = 13;
-
    let convert = d => d - '0';
 
-   let maxProduct = 0;
-   for (let i = 0; i < data.length - adjacents; i++) {
-      const product = [...data.slice(i, i + adjacents)].reduce( (prod, d) => prod * convert(d) );
-      maxProduct = Math.max(maxProduct, product);
-   }
+   return new EulerProblem({
+      problem: 8,
+      testInput: 4,
+      realInput: 13,
 
-   return maxProduct;
-}
+      solver: function (n) {
+         let maxProduct = 0;
+         for (let i = 0; i < data.length - n; i++) {
+            let product = gwu.reduce((prod, d) => prod * convert(d), data.slice(i, i + n), 1);
+            maxProduct = Math.max(maxProduct, product);
+         }
+
+         return maxProduct;
+      }
+   });
+}();

@@ -13,6 +13,10 @@ class EulerProblem {
     }
 
     solveSingle(n) {
+        if (typeof(n) === 'undefined' && this.def.realInput === null) {
+            return `Problem ${this.def.problem} has no input defined`;
+        }
+
         let timer = new FunctionTimer();
         timer.start();
         let value = this.def.solver(n || this.def.realInput);
@@ -22,6 +26,10 @@ class EulerProblem {
     }
 
     solve(n) {
+        if (typeof(n) === 'undefined' && this.def.realInput === null) {
+            return [`Problem ${this.def.problem} has no input defined`];
+        }
+
         if (this.def.solvers) {
             return Object.keys(this.def.solvers).map((method) => {
                 let timer = new FunctionTimer();
@@ -37,7 +45,15 @@ class EulerProblem {
     }
 
     test() {
-        return this.solve(this.def.testInput);
+        if (this.def.testInput === null) {
+            return [`Problem ${this.def.problem} has no test input defined`];
+        }
+
+        if (typeof this.def.testInput === 'function') {
+            return this.def.testInput();
+        } else {
+            return this.solve(this.def.testInput);
+        }
     }
 }
 
@@ -59,7 +75,7 @@ class EulerSolution {
             s += ` (${this.timeTaken})`;
         }
         if (this.method) {
-            s += ` (using method ${this.method})`
+            s += ` (using ${this.method} method)`
         }
 
         return s;

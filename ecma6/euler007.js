@@ -6,7 +6,7 @@
  *
  *  What is the 10 001st prime number?
  */
-var  euler007 = new EulerProblem({
+var euler007 = new EulerProblem({
    problem: 7,
    testInput: 6,
    realInput: 10001,
