@@ -1,0 +1,27 @@
+{
+  "name": "ecma6",
+  "version": "1.0.0",
+  "description": "Project Euler solutions in ECMA6",
+  "main": "euler-tests.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-cli": "^6.6.5",
+    "karma-mocha": "^1.1.1",
+    "karma": "^1.2.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Greg Charles",
+  "license": "MIT"
+}
