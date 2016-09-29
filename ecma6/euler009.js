@@ -12,8 +12,11 @@ Find the product abc.
 */
 var euler009 = new EulerProblem({
    problem: 9,
-   testInput: null,
+   testInput: 3 + 4 + 5,
+   testOutput: 3 * 4 * 5,
    realInput: 1000,
+   realOutput: 31875000,
+
    solver: function (n) {
       for (let a = 1; a < n; a++) {
          for (let b = a + 1; b < n - a; b++) {

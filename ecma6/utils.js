@@ -22,7 +22,7 @@ class EulerProblem {
         let value = this.def.solver(n || this.def.realInput);
         timer.stop();
 
-        return new EulerSolution(this.def.problem, value, timer.toString(), n);
+        return new EulerSolution(this.def.problem, value, timer.totalTime, n);
     }
 
     solve(n) {
@@ -37,7 +37,7 @@ class EulerProblem {
                 let value = this.def.solvers[method](n || this.def.realInput);
                 timer.stop();
 
-                return new EulerSolution(this.def.problem, value, timer.toString(), n, method);
+                return new EulerSolution(this.def.problem, value, timer.totalTime, n, method);
             });
         } else {
             return [this.solveSingle(n)];
@@ -71,9 +71,9 @@ class EulerSolution {
         if (this.input) {
             s += ` for input ${this.input}`;
         }
-        if (this.timeTaken) {
-            s += ` (${this.timeTaken})`;
-        }
+
+        s += ` (${this.timeTaken} ms)`;
+
         if (this.method) {
             s += ` (using ${this.method} method)`
         }

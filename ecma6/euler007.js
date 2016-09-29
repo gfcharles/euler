@@ -9,7 +9,9 @@
 var euler007 = new EulerProblem({
    problem: 7,
    testInput: 6,
+   testOutput: 13,
    realInput: 10001,
+   realOutput: 104743,
 
    solver: function (n) {
       return primes.PrimeGenerator(n).next().value;

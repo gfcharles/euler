@@ -37,7 +37,9 @@ var euler008 = function () {
    return new EulerProblem({
       problem: 8,
       testInput: 4,
+      testOutput: 5832,
       realInput: 13,
+      realOutput: 23514624000,
 
       solver: function (n) {
          let maxProduct = 0;
