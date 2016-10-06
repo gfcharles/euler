@@ -6,16 +6,18 @@
 
  Find the sum of all the primes below two million.
 */
-function euler010() {
-   const threshold = 2000000;
+var euler010 = new EulerProblem({
+   problem: 10,
+   testInput: 10,
+   testOutput: 17,
+   realInput: 2000000,
+   realOutput: 142913828922,
 
-   let sum = 0;
-   for (let prime of primes.PrimeGenerator()) {
-      if (prime >= threshold) {
-         break;
-      }
-      sum += prime;
+   solver: function(n) {
+
+      return gwu.reduce((sum, x) => sum + x,
+             gwu.takeWhile(p => p < n,
+             primes.PrimeGenerator())
+      );
    }
-
-   return sum;
-}
+});

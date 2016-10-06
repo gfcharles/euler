@@ -13,17 +13,19 @@ let gwu = function () {
     }
 
     function reduce (fnc, iterable, init) {
-        let result = null;
-
-        if (typeof(init) === 'undefined') {
-            let iterator = (typeof(iterable.next) === 'function') ? iterable : iterable[Symbol.iterator]();
-            result = iterator.next().value;
-        } else {
-            result = init;
-        }
-
+        let result = init;
+        let first = true;
         for (let el of iterable) {
-            result = fnc(result, el);
+            if (first) {
+                if (typeof(init) === 'undefined') {
+                    result = el;
+                } else {
+                    result = fnc(init, el);
+                }
+                first = false;
+            } else {
+                result = fnc(result, el);
+            }
         }
 
         return result;

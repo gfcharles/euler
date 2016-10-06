@@ -21,9 +21,10 @@ module.exports = function(config) {
       'src/gregmath.js',
       // 'euler007.js',
       // 'euler008.js',
-      'euler009.js',
-      'euler071.js',
-      'test/*.js'
+      'euler010.js',
+      'euler092.js',
+        // 'test/gwu-tests.js',
+      'test/euler-tests.js'
     ],
 
 
@@ -73,6 +74,8 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    browserNoActivityTimeout: 100000
   })
 }
