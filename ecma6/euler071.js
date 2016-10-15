@@ -32,7 +32,7 @@ var euler071 = new EulerProblem({
             }
 
             let q = n / d;
-            if (q > results.quotient && gregmath.gcf(n, d) == 1) {
+            if (q > results.quotient && MyMathUtils.gcf(n, d) == 1) {
                 results = {numerator: n, quotient: q};
             }
         }

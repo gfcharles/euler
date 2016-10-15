@@ -3,7 +3,7 @@
  */
 "use strict";
 
-let gregmath = function () {
+let MyMathUtils = function () {
     function combinations(n, m) {
         let k = Math.min(m, n-m);
         let prod = 1;

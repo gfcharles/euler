@@ -28,7 +28,7 @@ var euler014 = function () {
         solver: function(n) {
             let maxC = 0, maxI = 0;
 
-            for (let i = Math.ceil(n/3); i < n; i++) {
+            for (let i = Math.floor(n/2); i < n; i++) {
                 let c = collatz(i);
                 if (c > maxC) {
                     maxC = c;
@@ -49,7 +49,7 @@ var euler014 = function () {
             } else {
                 n = n / 2;
             }
-            count += 1;
+            ++count;
         }
         return count;
     }

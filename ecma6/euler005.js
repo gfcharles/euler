@@ -8,6 +8,6 @@ var euler005 = new EulerProblem({
    testInput: 10,
    realInput: 20,
    solver: function (n) {
-      return primes.lcm([...Range(1,n)]);
+      return primes.lcm([...gwu.Range(1,n)]);
    }
 });

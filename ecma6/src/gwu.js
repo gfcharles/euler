@@ -6,7 +6,18 @@
  */
 let gwu = function () {
     "use strict";
-    function * map (fnc, iterable) {
+    // Range generator
+    function* Range(begin, end, interval = 1) {
+        for (let i = begin; i <= end; i += interval) {
+            yield i;
+        }
+    }
+
+    function isIterable (obj) {
+        return obj && typeof obj[Symbol.iterator] === 'function';
+    };
+
+    function* map (fnc, iterable) {
         for (let el of iterable) {
             yield fnc(el);
         }
@@ -31,7 +42,7 @@ let gwu = function () {
         return result;
     }
 
-    function * take(n, iterable) {
+    function* take(n, iterable) {
         let count = 0;
         for (let el of iterable) {
             if (count++ >= n) {
@@ -41,7 +52,7 @@ let gwu = function () {
         }
     }
 
-    function * drop(n, iterable) {
+    function* drop(n, iterable) {
         let count = 0;
         for (let el of iterable) {
             if (count++ >= n) {
@@ -69,6 +80,7 @@ let gwu = function () {
     }
 
     return {
+        Range: Range,
         map: map,
         reduce: reduce,
         take: take,

@@ -28,7 +28,7 @@ var euler092 = function () {
         known[i] = true;
     }
 
-    let digitSquares = [...gwu.map(x => x * x, Range(0,9))];
+    let digitSquares = [...gwu.map(x => x * x, gwu.Range(0,9))];
 
     return new EulerProblem({
         problem: 92,
@@ -37,8 +37,8 @@ var euler092 = function () {
         realOutput: 8581146,
 
         solver: function(n) {
-            let maxToStore = Math.ceil(Math.log(n) / Math.log(10));
-            return gwu.reduce((sum, x) => endsIn89(x, maxToStore) ? sum + 1 : sum, Range(1,n-1), 0);
+            let maxToStore = Math.ceil(Math.log(n) / Math.log(10) * digitSquares[9]);
+            return gwu.reduce((sum, x) => endsIn89(x, maxToStore) ? sum + 1 : sum, gwu.Range(1,n-1), 0);
         }
     });
 

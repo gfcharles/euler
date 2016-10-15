@@ -10,11 +10,12 @@
 
  The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 
- What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+ What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally)
+ in the 20×20 grid?
 
  * @returns {number}
  */
-function euler011() {
+var euler011 = function() {
    const rawData = `
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -38,77 +39,87 @@ function euler011() {
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 `;
 
-   // Parse the raw data into two-dimensional array of integers.
-   const rows = rawData.split('\n').filter(row => row.trim().length > 0);
-   const data = rows.map(row => row.split(' ').map(s => parseInt(s)));
+   return new EulerProblem({
+      problem: 11,
+      testInput: 2,
+      testOutput: 9306,
+      realInput: 4,
+      realOutput: 70600674,
 
-   const adjacents = 4;
+      solver: function(n) {
+         // Parse the raw data into two-dimensional array of integers.
+         const rows = rawData.split('\n').filter(row => row.trim().length > 0);
+         const data = rows.map(row => row.split(' ').map(s => parseInt(s)));
 
-   // Define the four calculations given a starting point: horizontal (right), vertical (down),
-   // and two diagonals.
-   let calcs = [
+         const adjacents = n;
 
-      // Horizontal
-      function (row, col) {
-         if (col > data[row].length - adjacents) {
-            return 0;
+         // Define the four calculations given a starting point: horizontal (right), vertical (down),
+         // and two diagonals.
+         let calcs = [
+
+            // Horizontal
+            function (row, col) {
+               if (col > data[row].length - adjacents) {
+                  return 0;
+               }
+
+               let prod = 1;
+               for (let i = 0; i < adjacents; i++) {
+                  prod *= data[row][col+i];
+               }
+               return prod;
+            },
+
+            // Vertical
+            function (row, col) {
+               if (row > data.length - adjacents) {
+                  return 0;
+               }
+
+               let prod = 1;
+               for (let i = 0; i < adjacents; i++) {
+                  prod *= data[row+i][col];
+               }
+               return prod;
+            },
+
+            // Dexter
+            function (row, col) {
+               if (row > data.length  - adjacents || col > data[row].length - adjacents) {
+                  return 0;
+               }
+
+               let prod = 1;
+               for (let i = 0; i < adjacents; i++) {
+                  prod *= data[row+i][col+i];
+               }
+               return prod;
+            },
+
+            // Sinister
+            function (row, col) {
+               if (row < adjacents || col > data[row].length - adjacents) {
+                  return 0;
+               }
+
+               let prod = 1;
+               for (let i = 0; i < adjacents; i++) {
+                  prod *= data[row-i][col+i];
+               }
+               return prod;
+            }
+         ];
+
+         let max = 0;
+         for (let row = 0; row < data.length; row++) {
+            for (let col = 0; col < data[row].length; col++) {
+               for (let calc of calcs) {
+                  max = Math.max(max, calc(row, col));
+               }
+            }
          }
 
-         let prod = 1;
-         for (let i = 0; i < adjacents; i++) {
-            prod *= data[row][col+i];
-         }
-         return prod;
-      },
-
-      // Vertical
-      function (row, col) {
-         if (row > data.length - adjacents) {
-            return 0;
-         }
-
-         let prod = 1;
-         for (let i = 0; i < adjacents; i++) {
-            prod *= data[row+i][col];
-         }
-         return prod;
-      },
-
-      // Dexter
-      function (row,col) {
-         if (row > data.length  - adjacents || col > data[row].length - adjacents) {
-            return 0;
-         }
-
-         let prod = 1;
-         for (let i = 0; i < adjacents; i++) {
-            prod *= data[row+i][col+i];
-         }
-         return prod;
-      },
-
-      // Sinister
-      function (row,col) {
-         if (row < adjacents || col > data[row].length - adjacents) {
-            return 0;
-         }
-
-         let prod = 1;
-         for (let i = 0; i < adjacents; i++) {
-            prod *= data[row-i][col+i];
-         }
-         return prod;
+         return max;
       }
-   ];
-
-   let max = 0;
-   for (let row = 0; row < data.length; row++) {
-      for (let col = 0; col < data[row].length; col++) {
-         for (let calc of calcs) {
-            max = Math.max(max, calc(row, col));
-         }
-      }
-   }
-
-   return max;
-}
+   });
+}();

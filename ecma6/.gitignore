@@ -1,4 +1,5 @@
 .idea
-*.map
-*-compiled.js
+**/*.map
+**/*-compiled.js
 node_modules/
+data/

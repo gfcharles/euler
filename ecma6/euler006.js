@@ -29,7 +29,7 @@ var euler006 = new EulerProblem({
          let sumOfSquares = 0;
          let sum = 0;
 
-         for (let i of Range(1, n)) {
+         for (let i of gwu.Range(1, n)) {
             sum += i;
             sumOfSquares += (i * i);
          }
