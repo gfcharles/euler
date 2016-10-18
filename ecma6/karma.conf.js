@@ -21,7 +21,8 @@ module.exports = function(config) {
       'src/my_math.js',
       'src/roman_numeral.js',
       'src/FileUtils.js',
-      'euler089.js',
+      // 'euler089.js',
+      'euler079.js',
         // 'test/TestGwu.js',
       'test/TestEulers.js'
       // 'test/TestRomanNumeral.js'
