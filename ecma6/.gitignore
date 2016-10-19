@@ -2,4 +2,4 @@
 **/*.map
 **/*-compiled.js
 node_modules/
-data/
+data

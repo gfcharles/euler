@@ -6,52 +6,50 @@
 
  What is the sum of the digits of the number 2<sup>1000<sup>?
  */
-function euler016(exp = 1000) {
+var euler016 = function () {
 
     class BigInteger {
-        constructor(initValue) {
-            this.digits = [...initValue.toString(10)].reverse().map(d => parseInt(d));
+        constructor() {
+            this.digits = [1];
         }
 
-        toString() {
-            this.digits.reverse();
-            let s = this.digits.join('');
-            this.digits.reverse();
-            return s;
-        }
-
+        /**
+         * Doubles the internal value, kept as an array of decimal digits from least to most significant.
+         */
         double() {
             let carry = 0;
 
             for (let i = 0; i < this.digits.length; i++) {
                 this.digits[i] = 2 * this.digits[i] + carry;
+                carry = 0;
 
                 if (this.digits[i] >= 10) {
                     this.digits[i] -= 10;
                     carry = 1;
-                } else {
-                    carry = 0;
                 }
             }
 
             if (carry) {
-                this.digits[this.digits.length] = 1;
+                this.digits.push(carry);
+            }
+        }
+    }
+
+    return new EulerProblem({
+        problem: 16,
+        testInput: 15,
+        testOutput: 26,
+        realInput: 1000,
+        realOutput: 1366,
+
+        solver: function(n) {
+            let value = new BigInteger();
+
+            for(let i = 0; i < n; i++) {
+                value.double();
             }
 
-            return this;
+            return value.digits.reduce((sum, x) => sum + x);
         }
-
-        sumOfDigits() {
-            return this.digits.reduce((sum, x) => sum + x);
-        }
-    }
-
-    let value = new BigInteger(1);
-
-
-    for(let i = 0; i < exp; i++) {
-        value = value.double();
-    }
-
-    return value.sumOfDigits();
-}
+    });
+}();
