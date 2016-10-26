@@ -79,13 +79,54 @@ let gwu = function () {
         }
     }
 
+    function all(fnc, iterable) {
+        for (let el of iterable) {
+            if (!fnc(el)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function any(fnc, iterable) {
+        for (let el of iterable) {
+            if (fnc(el)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function count(iterable) {
+        let count = 0;
+        for (let el of iterable) {
+            ++count;
+        }
+        return count;
+    }
+
+    function sum(iterable) {
+        return reduce((sum, x) => sum + x, 0);
+    }
+
+    function forEach(fnc, iterable) {
+        for (let el of iterable) {
+            fnc(el);
+        }
+    }
+
     return {
         Range: Range,
         map: map,
         reduce: reduce,
+        count: count,
+        sum: sum,
         take: take,
         takeWhile: takeWhile,
         drop: drop,
-        filter: filter
+        filter: filter,
+        all: all,
+        any: any,
+        forEach: forEach
     }
 }();

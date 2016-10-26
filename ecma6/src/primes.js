@@ -7,7 +7,7 @@
 
 let primes = function () {
    // Keep a list of first n known primes.
-   let knownPrimes = [2, 3];
+   let knownPrimes = [2, 3, 5];
 
    /**
     * Prime number generator function. Can be initialized with a start value, e.g., 5 to start with the 5th prime.
@@ -35,6 +35,24 @@ let primes = function () {
                return i;
             }
          }
+      }
+   };
+
+   let PrimeCandidates = function* () {
+      yield *knownPrimes;
+
+      let mod = lastKnownPrime() % 6;
+      let n = ((lastKnownPrime() - mod) / 6) + 1;
+
+      if (mod === 5) {
+         yield 6 * n + 1;
+         ++n;
+      }
+
+      while (true) {
+         yield 6 * n - 1;
+         yield 6 * n + 1;
+         ++n;
       }
    };
 
@@ -188,6 +206,7 @@ let primes = function () {
    return {
       checkPrime: checkPrime,
       PrimeGenerator: PrimeGenerator,
+      PrimeCandidates: PrimeCandidates,
       primeFactors: primeFactors,
       FactorMap: FactorMap,
       lcm: FactorMap.lcm,

@@ -20,11 +20,12 @@ module.exports = function(config) {
       'src/primes.js',
       'src/my_math.js',
       'src/roman_numeral.js',
+      'src/decimals.js',
       'src/FileUtils.js',
-      // 'euler089.js',
-      'euler079.js',
-        // 'test/TestGwu.js',
-      'test/TestEulers.js'
+      'euler035.js',
+      'test/TestEulers.js',
+      'test/TestDecimals.js'
+      // 'test/TestGwu.js',
       // 'test/TestRomanNumeral.js'
     ],
 
@@ -77,6 +78,6 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-    browserNoActivityTimeout: 100000
+    browserNoActivityTimeout: 10000
   })
 }
