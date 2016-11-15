@@ -89,6 +89,11 @@ let MyMathUtils = function () {
             return new MyMathUtils.Point(x, y);
         }
 
+        pointAtY(y) {
+            let x = (y - this.intercept) / this.slope;
+            return new MyMathUtils.Point(x, y);
+        }
+
         toString() {
             return `Line: y = ${this.slope} * x + ${this.intercept}`;
         }

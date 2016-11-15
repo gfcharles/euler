@@ -20,11 +20,12 @@ module.exports = function(config) {
       'src/primes.js',
       'src/my_math.js',
       'src/roman_numeral.js',
-      'src/decimals.js',
       'src/FileUtils.js',
-      'euler035.js',
+      // 'euler035.js',
+      // 'euler079.js',
+      'euler144.js',
       'test/TestEulers.js',
-      'test/TestDecimals.js'
+      'test/TestMyMath.js'
       // 'test/TestGwu.js',
       // 'test/TestRomanNumeral.js'
     ],

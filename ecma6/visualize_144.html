@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="./src/euler_framework.js"></script>
+    <script src="./src/my_math.js"></script>
+    <script src="./euler144.js"></script>
+    <script>
+    </script>
+    <style>
+        .svg-container {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            vertical-align: top;
+            overflow: hidden;
+        }
+        .svg-content {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <title>Visualization of Project Euler Problem 144</title>
+</head>
+<body>
+    <script>
+    $(function(){
+        //Make an SVG Container
+        var svgContainer = d3.select("svg#viz g");
+
+        var lineData = [...euler144.def.generator(euler144.def.realInput)];
+
+        //This is the accessor function we talked about above
+        var lineFunction = d3.line()
+                                 .x(function(d) { return d.x; })
+                                 .y(function(d) { return d.y; });
+
+        //The line SVG Path we draw
+        var path = svgContainer.append("path")
+                                    .attr("d", lineFunction(lineData))
+                                    .attr("stroke", "blue")
+                                    .attr("vector-effect", "non-scaling-stroke")
+                                    .attr("fill", "none");
+
+        var totalLength = path.node().getTotalLength() * 50;
+
+        path.attr("stroke-dasharray", totalLength + " " + totalLength)
+                .attr("stroke-dashoffset", totalLength)
+                .transition()
+                .duration(30000)
+                .attr("stroke-dashoffset", 0);
+
+        svg.on("tick", function(){
+            path.transition()
+                    .duration(30000)
+                    .ease("linear")
+                    .attr("stroke-dashoffset", totalLength);
+        });
+    });
+
+    </script>
+
+    <div id="container" class="svg-container">
+        <svg id="viz" viewBox="0 0 500 500" class="svg-content">
+            <g transform="translate(140,140), scale(12,-12)">
+                <ellipse cx="0" cy="0"
+                         rx="5" ry="10"
+                         stroke-width="1"
+                         stroke="black"
+                         fill="none"
+                         vector-effect="non-scaling-stroke"></ellipse>
+                <rect x="-0.01" y="9"
+                      width="0.02" height="2"
+                      stroke="white" fill="none"
+                      vector-effect="non-scaling-stroke"></rect>
+            </g>
+        </svg>
+    </div>
+
+</body>
+</html>

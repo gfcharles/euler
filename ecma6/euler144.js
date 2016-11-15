@@ -36,12 +36,20 @@ var euler144 = function() {
         realOutput: 354,
 
         solver: function (n) {
+            // Number of reflections is total number of points minus 2 (for start and end)
+            let points = [...this.generator(n)];
+            return points.length - 2;
+        },
+
+        generator: function* (n) {
             let start = new MyMathUtils.Point(n.p0.x, n.p0.y);
             let end = new MyMathUtils.Point(n.p1.x, n.p1.y);
-            let rayIn = new MyMathUtils.Line({pointA: start, pointB: end});
 
-            let count = 0;
-            while ( !testEscape( end ) ) {
+            let rayIn = new MyMathUtils.Line({pointA: start, pointB: end});
+            yield rayIn.pointAtY(11);
+            yield end;
+
+            while ( true ) {
                 let tangent  = tangentSlope( end );
                 let reflectionLine = new MyMathUtils.Line({ slope: -1 / tangent, point: end });
                 let rayOut = rayIn.reflectionAround(reflectionLine);
@@ -49,15 +57,19 @@ var euler144 = function() {
                 let currentX = end.x;
                 start = end;
                 end = computeNextReflectionPoint(rayOut, currentX);
+
+                if (testEscape( end )) {
+                    yield rayOut.pointAtY(11);
+                    return;
+                }
+
                 rayIn = rayOut;
-                ++count;
-                //console.log(end.toString());
+                yield end;
             }
-            return count;
         }
     });
 
-    // Returns slope to tangent of ellipse at point p. Tangent dy/dx (y = 100 - 4x^2) =
+    // Returns slope to tangent of ellipse at point p. Tangent dy/dx (y = sqrt(100 - 4x^2)) =
     // -4x / sqrt(100 - 4x^2) = -4x / y.
     // Assume tangent can't be 0 or infinite.
     function tangentSlope(p) {
@@ -67,7 +79,7 @@ var euler144 = function() {
     // Solve for intersection of line y = mx + b with ellipse 4x^2 + y^2 = 100.
     // 4x^2 + y^2 = 100
     // 4x^2 + (mx + b)^2 = 100
-    // (4 + m^2) * x2 + (2 * m * b) * x + (b * b - 100) = 0
+    // (4 + m^2) * x^2 + (2 * m * b) * x + (b * b - 100) = 0
     function computeNextReflectionPoint(ray, currentX) {
         let a = 4 + ray.slope * ray.slope;
         let b = 2 * ray.slope * ray.intercept;
