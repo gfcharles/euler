@@ -20,6 +20,9 @@ function _Fn(ep){
 
 
         describe('Checks real input', function () {
+            if (ep.def.realOutputEncrypted && typeof eulerKey !== 'undefined') {
+                ep.def.realOutput = new Tea(eulerKey).decrypt(ep.def.realOutputEncrypted);
+            }
             let solutions = ep.solve();
 
             it('should have at least one solution', function () {

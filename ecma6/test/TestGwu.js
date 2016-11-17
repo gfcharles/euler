@@ -21,8 +21,12 @@ describe('Test gwu', function () {
     });
 
     it('should map a String', function () {
-       let map = [...gwu.map(c => c - '0', '1066')];
+        let map = [...gwu.map(c => c - '0', '1066')];
         expect(compareArrays(map, [1,0,6,6])).toBe('equal');
+    });
+
+    it('should count generator members', function () {
+        expect(gwu.count(gwu.Range(1,5))).toBe(5);
     });
 
 // output(gwu.reduce((sum,x) => sum + x, [1,2,3,4,5]));

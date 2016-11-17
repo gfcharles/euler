@@ -3,3 +3,5 @@
 **/*-compiled.js
 node_modules/
 data
+src/secret.js
+lib/*.js

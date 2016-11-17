@@ -15,6 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'src/secret.js',
+      'src/utils.js',
       'src/euler_framework.js',
       'src/gwu.js',
       'src/primes.js',
@@ -25,8 +27,9 @@ module.exports = function(config) {
       // 'euler079.js',
       'euler144.js',
       'test/TestEulers.js',
-      'test/TestMyMath.js'
-      // 'test/TestGwu.js',
+      'test/TestMyMath.js',
+      'test/TestTea.js',
+      'test/TestGwu.js',
       // 'test/TestRomanNumeral.js'
     ],
 

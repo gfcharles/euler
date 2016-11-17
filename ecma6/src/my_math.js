@@ -46,7 +46,7 @@ let MyMathUtils = function () {
         }
 
         toString() {
-            return `Point: (${this.x}, ${this.y})`;
+            return `(${this.x}, ${this.y})`;
         }
     }
 

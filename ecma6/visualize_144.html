@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script src="./lib/jquery_3.1.0_jquery.js"></script>
+    <script src="./lib/d3.v4.js"></script>
     <script src="./src/euler_framework.js"></script>
     <script src="./src/my_math.js"></script>
     <script src="./euler144.js"></script>
@@ -42,25 +44,31 @@
 
         //The line SVG Path we draw
         var path = svgContainer.append("path")
-                                    .attr("d", lineFunction(lineData))
-                                    .attr("stroke", "blue")
-                                    .attr("vector-effect", "non-scaling-stroke")
-                                    .attr("fill", "none");
+            .attr("d", lineFunction(lineData))
+            .attr("stroke", "steelblue")
+            .attr("vector-effect", "non-scaling-stroke")
+            .attr("fill", "none");
+
+        var path2 = svgContainer.append("path")
+            .attr("d", lineFunction(lineData))
+            .attr("stroke", "yellow")
+            .attr("stroke-width", 0.16666666666)
+            .attr("fill", "none");
 
         var totalLength = path.node().getTotalLength() * 50;
 
         path.attr("stroke-dasharray", totalLength + " " + totalLength)
-                .attr("stroke-dashoffset", totalLength)
-                .transition()
-                .duration(30000)
-                .attr("stroke-dashoffset", 0);
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(60000)
+            .attr("stroke-dashoffset", 0);
 
-        svg.on("tick", function(){
-            path.transition()
-                    .duration(30000)
-                    .ease("linear")
-                    .attr("stroke-dashoffset", totalLength);
-        });
+        path2.attr("stroke-dasharray", 5 + " " + (totalLength - 5))
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(200000)
+            .attr("stroke-dashoffset", 0);
+
     });
 
     </script>

@@ -33,12 +33,12 @@ var euler144 = function() {
     return new EulerProblem({
         problem: 144,
         realInput: {p0: {x: 0.0, y: 10.1}, p1: {x: 1.4, y: -9.6}},
-        realOutput: 354,
+        realOutputEncrypted: [3063890917, 639995605],
 
         solver: function (n) {
             // Number of reflections is total number of points minus 2 (for start and end)
-            let points = [...this.generator(n)];
-            return points.length - 2;
+            let points = gwu.count(this.generator(n));
+            return points - 2;
         },
 
         generator: function* (n) {
