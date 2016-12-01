@@ -12,6 +12,10 @@
     <script>
     </script>
     <style>
+        svg {
+            background-color: deeppink;
+        }
+
         .svg-container {
             display: inline-block;
             position: relative;
@@ -35,7 +39,7 @@
         //Make an SVG Container
         var svgContainer = d3.select("svg#viz g");
 
-        var lineData = [...euler144.def.generator(euler144.def.realInput)];
+        var lineData = [...euler144.def.generator(euler144.def.realInput)].slice(0,4);
 
         //This is the accessor function we talked about above
         var lineFunction = d3.line()
@@ -45,36 +49,26 @@
         //The line SVG Path we draw
         var path = svgContainer.append("path")
             .attr("d", lineFunction(lineData))
-            .attr("stroke", "steelblue")
+            .attr("stroke", "red")
             .attr("vector-effect", "non-scaling-stroke")
             .attr("fill", "none");
 
-        var path2 = svgContainer.append("path")
-            .attr("d", lineFunction(lineData))
-            .attr("stroke", "yellow")
-            .attr("stroke-width", 0.16666666666)
-            .attr("fill", "none");
+        var totalLength = path.node().getTotalLength();
+        console.log(totalLength);
 
-        var totalLength = path.node().getTotalLength() * 50;
+        path.attr("stroke-dasharray", 43 + ", " + 43);
+//            .attr("stroke-dashoffset", totalLength);
+//            .transition()
+//            .duration(60000)
+//            .attr("stroke-dashoffset", 0);
 
-        path.attr("stroke-dasharray", totalLength + " " + totalLength)
-            .attr("stroke-dashoffset", totalLength)
-            .transition()
-            .duration(60000)
-            .attr("stroke-dashoffset", 0);
-
-        path2.attr("stroke-dasharray", 5 + " " + (totalLength - 5))
-            .attr("stroke-dashoffset", totalLength)
-            .transition()
-            .duration(200000)
-            .attr("stroke-dashoffset", 0);
 
     });
 
     </script>
 
     <div id="container" class="svg-container">
-        <svg id="viz" viewBox="0 0 500 500" class="svg-content">
+        <svg id="viz" class="svg-content">
             <g transform="translate(140,140), scale(12,-12)">
                 <ellipse cx="0" cy="0"
                          rx="5" ry="10"

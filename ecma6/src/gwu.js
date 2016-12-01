@@ -61,6 +61,10 @@ let gwu = function () {
         }
     }
 
+    function nextValue(iterable) {
+        return iterable.next().value;
+    }
+
     function * takeWhile(fnc, iterable) {
         for (let el of iterable) {
             if (fnc(el)) {
@@ -124,6 +128,7 @@ let gwu = function () {
         take: take,
         takeWhile: takeWhile,
         drop: drop,
+        nextValue: nextValue,
         filter: filter,
         all: all,
         any: any,
