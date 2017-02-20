@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Created by gcharles on 2/12/17.
  */
-public class EulerProblemTest<T> {
+public abstract class EulerProblemTest<T> {
     private final EulerProblem<T> eulerProblem;
     private final Optional<T> testInput;
     private final OptionalLong testSolution;
@@ -37,7 +37,8 @@ public class EulerProblemTest<T> {
     public void testSolve() {
         testSolution.ifPresent(solution -> assertEquals( solution, eulerProblem.solve(testInput.get()) ));
         realSolution.ifPresent(solution -> assertEquals( solution, eulerProblem.solve(realInput) ));
-        System.out.println( "Solution = " + realSolution.orElseGet(() -> eulerProblem.solve(realInput) ));
+        System.out.println( this.eulerProblem.getClass().getSimpleName() + " Solution = "
+                + realSolution.orElseGet(() -> eulerProblem.solve(realInput) ));
     }
 
 }

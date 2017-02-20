@@ -29,11 +29,10 @@ public class Euler012 extends EulerProblem<Integer> {
     @Override
     public long solve( Integer input ) {
         // Solution using com.protonpack library: https://github.com/poetix/protonpack
-        Stream<Integer> infinite = IntStream.generate(new TriangleSupplier()).mapToObj(n -> n);
+        Stream<Integer> infinite = Stream.generate(new TriangleSupplier());
 
         return StreamUtils.skipUntil(infinite, n -> FactorMap.factor(n).factorCount() > input)
-                .mapToInt(n -> n)
                 .findFirst()
-                .getAsInt();
+                .get();
     }
 }

@@ -125,12 +125,12 @@ public class Euler013 extends EulerProblem<Void> {
                     "20849603980134001723930671666823555245252804609722\n" +
                     "53503534226472524250874054075591789781264330331690";
     @Override
-    public long solve(Void x) {
-        String result = Arrays.stream(DATA.split("\n"))
-                .map(BigInteger::new)
-                .reduce(BigInteger.ZERO, BigInteger::add)
+    public long solve( Void x ) {
+        String result = Arrays.stream( DATA.split( "\n" ) )
+                .map( BigInteger::new )
+                .reduce( BigInteger.ZERO, BigInteger::add )
                 .toString()
-                .substring(0, 10);
+                .substring( 0, 10 );
 
         return Long.parseLong(result);
     }

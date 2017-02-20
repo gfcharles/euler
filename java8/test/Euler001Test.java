@@ -6,6 +6,6 @@ import java.util.OptionalLong;
  */
 class Euler001Test extends EulerProblemTest<Integer> {
     public Euler001Test() {
-        super(new Euler001(), Optional.of(10), OptionalLong.of(23), 1000, OptionalLong.of(23316));
+        super(new Euler001(), Optional.of(10), OptionalLong.of(23), 1000, OptionalLong.of(233168));
     }
 }
