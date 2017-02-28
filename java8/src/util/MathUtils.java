@@ -13,15 +13,15 @@ public class MathUtils {
     }
 
     public static long combinations(int n, int m) {
-        if ( n < m || n < 0 || m < 0 ) {
+        if (n < m || n < 0 || m < 0) {
             return 0;
         }
 
-        int limit = Math.min( m, n - m );
+        int limit = Math.min(m, n - m);
 
         return LongStream
-                .rangeClosed( 1, limit )
-                .reduce(1L, (prod, i) -> prod * (n - i + 1) / i );
+                .rangeClosed(1, limit)
+                .reduce(1L, (prod, i) -> prod * (n - i + 1) / i);
     }
 
     public static long gcf(long a, long b) {
@@ -38,6 +38,6 @@ public class MathUtils {
     }
 
     public static long lcm(long a, long b) {
-        return a / gcf(a,b) * b;
+        return a / gcf(a, b) * b;
     }
 }

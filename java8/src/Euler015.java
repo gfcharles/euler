@@ -8,7 +8,7 @@ import util.MathUtils;
  */
 public class Euler015 extends EulerProblem<Pair<Integer, Integer>> {
     @Override
-    public long solve( Pair<Integer, Integer> dimensions) {
+    public long solve(Pair<Integer, Integer> dimensions) {
         return MathUtils.combinations(dimensions.getLeft() + dimensions.getRight(), dimensions.getLeft());
     }
 }

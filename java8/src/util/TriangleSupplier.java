@@ -8,7 +8,7 @@ import java.util.stream.LongStream;
 
 /**
  * Supplier for Triangle numbers in sequence.
- *
+ * <p>
  * Created by gcharles on 2/12/17.
  */
 public class TriangleSupplier implements Supplier<Integer> {

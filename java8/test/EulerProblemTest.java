@@ -2,13 +2,13 @@ import framework.EulerProblem;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.OptionalLong;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
+ * Base class for Euler Problem tests.
  * Created by gcharles on 2/12/17.
  */
 public abstract class EulerProblemTest<T> {
@@ -20,8 +20,8 @@ public abstract class EulerProblemTest<T> {
 
     public EulerProblemTest(EulerProblem<T> eulerProblem,
                             Optional<T> testInput, OptionalLong testSolution,
-                            T realInput, OptionalLong realSolution)
-    {
+                            T realInput, OptionalLong realSolution) {
+
         this.eulerProblem = eulerProblem;
         this.testInput = testInput;
         this.testSolution = testSolution;
@@ -30,15 +30,32 @@ public abstract class EulerProblemTest<T> {
     }
 
     public EulerProblemTest(EulerProblem<T> eulerProblem, T realInput, OptionalLong realSolution) {
-        this( eulerProblem, Optional.empty(), OptionalLong.empty(), realInput, realSolution );
+        this(eulerProblem, Optional.empty(), OptionalLong.empty(), realInput, realSolution);
+    }
+
+    public EulerProblemTest(EulerProblem eulerProblem, T testInput, long testSolution, T realInput) {
+        this(eulerProblem, Optional.of(testInput), OptionalLong.of(testSolution), realInput, OptionalLong.empty());
+    }
+
+    public EulerProblemTest(EulerProblem eulerProblem, T testInput, long testSolution, T realInput, long realSolution) {
+        this(eulerProblem, Optional.of(testInput), OptionalLong.of(testSolution),
+                realInput, OptionalLong.of(realSolution));
+    }
+
+    public EulerProblemTest(EulerProblem eulerProblem, T realInput) {
+        this(eulerProblem, Optional.empty(), OptionalLong.empty(), realInput, OptionalLong.empty());
+    }
+
+    public EulerProblemTest(EulerProblem eulerProblem, T realInput, long realSolution) {
+        this(eulerProblem, Optional.empty(), OptionalLong.empty(), realInput, OptionalLong.of(realSolution));
     }
 
     @Test
     public void testSolve() {
-        testSolution.ifPresent(solution -> assertEquals( solution, eulerProblem.solve(testInput.get()) ));
-        realSolution.ifPresent(solution -> assertEquals( solution, eulerProblem.solve(realInput) ));
-        System.out.println( this.eulerProblem.getClass().getSimpleName() + " Solution = "
-                + realSolution.orElseGet(() -> eulerProblem.solve(realInput) ));
+        testSolution.ifPresent(solution -> assertEquals(solution, eulerProblem.solve(testInput.get())));
+        realSolution.ifPresent(solution -> assertEquals(solution, eulerProblem.solve(realInput)));
+        System.out.println(this.eulerProblem.getClass().getSimpleName() + " Solution = "
+                + realSolution.orElseGet(() -> eulerProblem.solve(realInput)));
     }
 
 }

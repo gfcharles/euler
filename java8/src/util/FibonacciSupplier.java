@@ -7,7 +7,7 @@ import java.util.stream.LongStream;
 
 /**
  * Supplier for FibonacciSupplier numbers in sequence.
- *
+ * <p>
  * Created by gcharles on 2/12/17.
  */
 public class FibonacciSupplier implements LongSupplier {

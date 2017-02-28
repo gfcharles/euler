@@ -79,6 +79,10 @@ public class PrimeSupplier implements IntSupplier {
         return finite.allMatch(j -> num % j != 0);
     }
 
+    public static Stream<Integer> primeGenerator() {
+        return IntStream.generate(new PrimeSupplier()).mapToObj(n -> n);
+    }
+
     public static void main(String[] args) throws Exception {
         IntStream.generate(new PrimeSupplier()).limit(20).forEach(System.out::println);
         //System.out.println($isPrime(3 * 19 * 19 * 19 * 19));

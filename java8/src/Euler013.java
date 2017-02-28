@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Euler013 extends EulerProblem<Void> {
     private static final String DATA =
-                    "37107287533902102798797998220837590246510135740250\n" +
+            "37107287533902102798797998220837590246510135740250\n" +
                     "46376937677490009712648124896970078050417018260538\n" +
                     "74324986199524741059474233309513058123726617309629\n" +
                     "91942213363574161572522430563301811072406154908250\n" +
@@ -108,12 +108,14 @@ public class Euler013 extends EulerProblem<Void> {
                     "72107838435069186155435662884062257473692284509516\n" +
                     "20849603980134001723930671666823555245252804609722\n" +
                     "53503534226472524250874054075591789781264330331690";
+
     @Override
-    public long solve( Void x ) {
-        String result = Arrays.stream( DATA.split( "\n" ) )
-                .map( BigInteger::new )
-                .reduce( BigInteger.ZERO, BigInteger::add )
-                .toString().substring( 0, 10 );
+    public long solve(Void x) {
+        String result = Arrays.stream(DATA.split("\n"))
+                .map(BigInteger::new)
+                .reduce(BigInteger.ZERO, BigInteger::add)
+                .toString()
+                .substring(0, 10);
 
         return Long.parseLong(result);
     }
