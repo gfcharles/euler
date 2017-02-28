@@ -1,0 +1,101 @@
+__author__ = 'gregcharles'
+import math
+from fractions import Fraction
+
+def is_square(n):
+    x = int(math.sqrt(n))
+    return x * x == n
+
+def CF_of_sqrt(n):
+    """ Compute the continued fraction representation of the
+        square root of N.
+
+        The first element in the returned array is the whole
+        part of the fraction. The others are the denominators
+        up to (and not including) the point where it starts
+        repeating.
+
+        Uses the algorithm explained here:
+        http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/cfINTRO.html
+        In the section named: "Methods of finding continued
+        fractions for square roots"
+    """
+    if is_square(n):
+        return [int(math.sqrt(n))]
+
+    ans = []
+
+    step1_num = 0
+    step1_denom = 1
+
+    while True:
+        nextn = int((math.floor(math.sqrt(n)) + step1_num) / step1_denom)
+        ans.append(int(nextn))
+
+        step2_num = step1_denom
+        step2_denom = step1_num - step1_denom * nextn
+
+        step3_denom = (n - step2_denom ** 2) / step2_num
+        step3_num = -step2_denom
+
+        if step3_denom == 1:
+            ans.append(ans[0] * 2)
+            break
+
+        step1_num, step1_denom = step3_num, step3_denom
+
+    return ans
+
+class ContinuedFraction(object):
+
+    def __init__(self, base, list):
+        self.base = base
+        self.list = list
+
+    def asFraction(self):
+        baseFraction = 0
+        for el in reversed(self.list):
+            baseFraction = Fraction(1,el+baseFraction)
+
+        return self.base + baseFraction
+
+    def __str__( self ):
+        string = '[' + str(self.base)
+        if len(self.list) > 0:
+            string += '; '
+            string += ','.join(map(str,self.list))
+        string += ']'
+
+        return string
+
+num = 61
+print "sqrt of ", num, ": ", math.sqrt(num)
+aList = CF_of_sqrt(num)
+print "CF: ", aList
+
+hList = [aList[0], aList[1]*aList[0] + 1]
+kList = [1, aList[1]]
+print hList[0], kList[0]
+print hList[1], kList[1]
+
+n = 2
+while n < 100:
+    i = (n - 1) % (len(aList)-1) + 1
+    print 'i = ', i
+    h = aList[i] * hList[-1] + hList[-2]
+    k = aList[i] * kList[-1] + kList[-2]
+    result =  h * h - num * k * k
+    print h, k, abs(float(h) / float(k) - math.sqrt(num)), result
+
+    if h * h - 61 * k * k == 1:
+        print "Found it! ", h, k
+        break
+
+    hList.append(h)
+    kList.append(k)
+
+    n += 1
+
+
+#[61, 109, 149, 151, 157, 166, 181, 193, 199, 211, 214, 233, 241, 244, 253, 268, 271, 277, 281, 298, 301, 309, 313, 317, 331, 334, 337, 353, 358, 367, 379, 382, 394, 397, 409, 412, 421, 433, 436, 449, 454, 457, 461, 463, 466, 477, 478, 481, 487, 489, 491, 493, 501, 502, 508, 509, 511, 517, 521, 523, 526, 538, 541, 547, 549, 553, 554, 556, 559, 565, 569, 571, 581, 586, 589, 593, 596, 597, 599, 601, 604, 607, 610, 613, 614, 617, 619, 622, 628, 631, 634, 637, 641, 643, 649, 652, 653, 655, 661, 662, 664, 669, 673, 679, 681, 685, 686, 691, 694, 709, 716, 718, 719, 721, 724, 739, 746, 749, 751, 753, 754, 757, 763, 764, 766, 769, 771, 772, 773, 778, 787, 789, 790, 794, 796, 797, 801, 805, 809, 811, 814, 821, 823, 826, 829, 834, 835, 838, 844, 849, 853, 856, 857, 859, 862, 863, 865, 869, 871, 877, 881, 883, 886, 889, 893, 907, 911, 913, 917, 919, 921, 922, 926, 928, 929, 931, 932, 937, 941, 946, 947, 949, 953, 955, 956, 958, 964, 967, 970, 971, 972, 974, 976, 977, 981, 988, 989, 991, 997, 99
+
