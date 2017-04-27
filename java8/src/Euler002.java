@@ -30,8 +30,13 @@ public class Euler002 extends EulerProblem<Integer> {
     @Override
     public long solve(Integer input) {
         // Solution using com.protonpack library: https://github.com/poetix/protonpack
-        Stream<Long> infinite = LongStream.generate(new FibonacciSupplier(1, 2)).mapToObj(l -> l);
-        LongStream finite = StreamUtils.takeUntil(infinite, l -> l > input).mapToLong(l -> l);
+        Stream<Long> infinite =
+                LongStream.generate(new FibonacciSupplier(1, 2))
+                .mapToObj(l -> l);
+
+        LongStream finite =
+                StreamUtils.takeUntil(infinite, l -> l > input)
+                .mapToLong(l -> l);
 
         return finite
                 .filter(IntegerUtils::even)
