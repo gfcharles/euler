@@ -1,7 +1,7 @@
 import framework.EulerProblem;
 import util.MathUtils;
 
-import static java.util.stream.IntStream.range;
+import static java.util.stream.LongStream.range;
 
 /**
  * A palindromic number reads the same both ways. The largest palindrome made from the product of
@@ -13,14 +13,14 @@ public class Euler004 extends EulerProblem<Integer> {
     @Override
     public long solve(Integer digits) {
 
-        int min = (int) Math.pow(10, digits - 1);
-        int max = (int) Math.pow(10, digits);
+        long min = (long) Math.pow(10, digits - 1);
+        long max = (long) Math.pow(10, digits);
 
         return range(min, max)
                 .flatMap(a -> range(a, max)
                         .map(b -> a * b))
                 .filter(MathUtils::isPalindrome)
                 .max()
-                .orElse(0);
+                .orElse(0L);
     }
 }
