@@ -1,11 +1,10 @@
 import framework.EulerProblem;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Optional;
 import java.util.OptionalLong;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.Assert.assertEquals;
 
 /**
  * Base class for Euler Problem tests.

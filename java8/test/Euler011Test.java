@@ -30,7 +30,7 @@ import java.util.OptionalLong;
  * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally)
  * in the 20×20 grid?
  */
-class Euler011Test extends EulerProblemTest<Integer> {
+public class Euler011Test extends EulerProblemTest<Integer> {
     public Euler011Test() {
         super(new Euler011(),4, 70_600_674);
     }

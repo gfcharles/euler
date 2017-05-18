@@ -1,8 +1,4 @@
-import framework.EulerProblem;
-
 import java.util.OptionalLong;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by gcharles on 2/12/17.

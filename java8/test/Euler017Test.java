@@ -8,7 +8,7 @@ import java.util.OptionalLong;
  * If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many
  * letters would be used?
  */
-class Euler017Test extends EulerProblemTest<Integer> {
+public class Euler017Test extends EulerProblemTest<Integer> {
     public Euler017Test() {
         super(new Euler017(), 5, 19, 1000);
     }
