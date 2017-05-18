@@ -11,11 +11,9 @@ import java.util.stream.LongStream;
 public class Euler005 extends EulerProblem<Integer> {
     @Override
     public long solve(Integer max) {
-
         return LongStream
-                .range(2, max)
-                .reduce(1, MathUtils::lcm);
+                .rangeClosed(2, max)
+                .reduce(MathUtils::lcm)
+                .orElse(1L);
     }
-
-
 }
