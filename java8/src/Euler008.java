@@ -1,6 +1,6 @@
 import framework.EulerProblem;
 
-import java.util.stream.IntStream;
+import static java.util.stream.IntStream.range;
 
 /**
  * The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
@@ -32,17 +32,18 @@ public class Euler008 extends EulerProblem<Integer> {
 
     @Override
     public long solve(Integer adjacent) {
-        return IntStream.range(0, DATA.length() - adjacent)
+        return range(0, DATA.length() - adjacent)
                 .mapToObj(n -> DATA.substring(n, n + adjacent))
                 .mapToLong(Euler008::digitProduct)
                 .max()
-                .getAsLong();
+                .orElse(0L);
     }
 
-    private static long digitProduct(String s) {
-        return s.chars()
-                .map(Character::getNumericValue)
-                .mapToLong(n -> n)
-                .reduce(1L, (a, b) -> a * b);
+    private static long digitProduct(String digitString) {
+        return digitString
+                .chars()
+                .mapToLong(Character::getNumericValue)
+                .reduce((a, b) -> a * b)
+                .orElse(0L);
     }
 }
