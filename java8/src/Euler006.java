@@ -18,8 +18,14 @@ public class Euler006 extends EulerProblem<Integer> {
     @Override
     public long solve(Integer max) {
 
-        long sum = LongStream.rangeClosed(1, max).sum();
-        long sumOfSquares = LongStream.rangeClosed(1, max).map(n -> n * n).sum();
+        long sum = LongStream
+                .rangeClosed(1, max)
+                .sum();
+
+        long sumOfSquares = LongStream
+                .rangeClosed(1, max)
+                .map(n -> n * n)
+                .sum();
 
         return (sum * sum) - sumOfSquares;
     }
