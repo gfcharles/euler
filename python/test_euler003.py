@@ -3,5 +3,5 @@ from test_euler_int import TestEulerInt
 
 
 class TestEuler003(TestEulerInt):
-    def __init__(self, *args):
-        super().__init__(3, euler003, *args)
+    problem_number = 3
+    function = euler003

@@ -1,2 +1,0 @@
-2023-05-12 14:13:09,016 - INFO [test_euler_int.py - wrapper():20] executed in {(end - start) * 1000:.1f} ms
-2023-05-12 14:14:36,563 - INFO [test_euler_int.py - wrapper():19] TestEuler001.test_challenge executed in 0.0 ms

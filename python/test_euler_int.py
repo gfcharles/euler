@@ -7,8 +7,8 @@ from data_loader import load_solutions
 import logging
 from euler import config_logging
 
-solutions = load_solutions()
 config_logging()
+solutions = load_solutions()
 
 def timer_metrics(function):
     def wrapper(*args, **kwargs):
@@ -29,14 +29,13 @@ class TestEulerIntData:
 
 
 class TestEulerInt(TestCase):
-    def __init__(self, problem_number:int, fnc: callable, *args):
-        super().__init__(*args)
+    function = None
+    problem_number = 0
+    skip = False
 
-        self.problem_number = problem_number
-        self.fnc = fnc
-
-        solution:dict = solutions[problem_number]
-        if solution:
+    def setUp(self):
+        if self.problem_number in solutions:
+            solution = solutions[self.problem_number]
             self.data = TestEulerIntData(
                 int(solution['sample_in']),
                 int(solution['sample_out']),
@@ -44,10 +43,19 @@ class TestEulerInt(TestCase):
                 int(solution['challenge_out']) )
         else:
             self.data = TestEulerIntData()
+            self.skip = True
 
     def test_sample(self):
-        self.assertEqual(self.data.sample_out, self.fnc(self.data.sample_in))
+        if self.skip:
+            return
+
+        fnc = self.function.__func__
+        self.assertEqual(self.data.sample_out, fnc(self.data.sample_in))
 
     @timer_metrics
     def test_challenge(self):
-        self.assertEqual(self.data.challenge_out, self.fnc(self.data.challenge_in))
+        if self.skip:
+            return
+
+        fnc = self.function.__func__
+        self.assertEqual(self.data.challenge_out, fnc(self.data.challenge_in))

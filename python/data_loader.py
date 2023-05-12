@@ -2,7 +2,7 @@ import csv
 import logging
 
 def load_solutions():
-    logging.debug('Loading solutions ...')
+    logging.info('Loading solutions ...')
     with open('euler_data.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         solutions = {int(row['problem']): row for row in reader}
