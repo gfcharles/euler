@@ -35,7 +35,7 @@ for a in xrange(-1000,1001):
     for b in prime.primes(1000):
         n = 1
         while True:
-            if (not prime.isprime(n*n + a*n + b)):
+            if (not prime.is_prime(n * n + a * n + b)):
                 break
             n += 1
 

@@ -18,9 +18,9 @@ allPrimes = prime.primes(10000)
 def tester(known, currentSize, m):
     for i in xrange(0,currentSize): 
         n = known[i]
-        if not prime.isprime(int(str(n) + str(m))):
+        if not prime.is_prime(int(str(n) + str(m))):
             return False
-        if not prime.isprime(int(str(m) + str(n))):
+        if not prime.is_prime(int(str(m) + str(n))):
             return False
 
     return True

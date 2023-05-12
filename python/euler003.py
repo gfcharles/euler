@@ -1,22 +1,19 @@
-'''
+"""
 The prime factors of 13195 are 5, 7, 13 and 29.
 
 What is the largest prime factor of the number 600851475143 ?
+"""
+from prime import prime_generator
+from itertools import takewhile
+from math import sqrt
 
-@author: gcharles
-'''
-def LargestPrimeFactor(n):
-    max = n
-    divisor = 2
-    while (n >= divisor ** 2):
-        if (n % divisor == 0):
-            n = n / divisor
-            max = n
-        else:
-            divisor += 1
-    
-    return max
-        
+def euler003(input_value: int) -> int:
+    # Get list of possible prime factors for input value in descending value
+    primes_list = list(takewhile(lambda p: p <= int(sqrt(input_value)), prime_generator()))
 
-print LargestPrimeFactor(600851475143)
+    # Return first (largest) prime that is a factor of input value
+    return next(x for x in reversed(primes_list) if input_value % x == 0)
 
+if __name__ == '__main__':
+    print(euler003(13195))
+    print(euler003(600851475143))

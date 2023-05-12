@@ -17,9 +17,9 @@ allPrimes = prime.primes(10000)
 # Test to see that the addition of m to the known set produces a valid a new set.
 def tester(known, m):
     for n in known:
-        if not prime.isprime(int(str(n) + str(m))):
+        if not prime.is_prime(int(str(n) + str(m))):
             return False
-        if not prime.isprime(int(str(m) + str(n))):
+        if not prime.is_prime(int(str(m) + str(n))):
             return False
 
     return True

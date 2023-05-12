@@ -1,4 +1,4 @@
-'''
+"""
 The sum of the squares of the first ten natural numbers is,
 1^(2) + 2^(2) + ... + 10^(2) = 385
 
@@ -11,20 +11,12 @@ Find the difference between the sum of the squares of the first one hundred natu
 
 @author: Greg Charles
 
-Note: square of sums = sum of cubes
-'''
-import time
+"""
+def euler006(n: int) -> int:
+    # Square of sum turns out to be the same as sum of cubes, so that simplifies things.
+    return sum(x ** 3 - x ** 2 for x in range(1, n + 1))
 
-start = time.clock()
- 
-a = 1;
-total = 0;
-while (a <= 100):
-    square = a ** 2;
-    cube = a * square;
-    total += (cube - square)
-    a += 1;
-    
-print total
 
-print 'Total time = ', time.clock() - start
+if __name__ == '__main__':
+    print(euler006(10))
+    print(euler006(100))

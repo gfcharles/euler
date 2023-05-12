@@ -34,7 +34,7 @@ def is_truncatable_prime(n):
         return False
     
     for x in truncations(n):
-        if (not prime.isprime(x)):
+        if (not prime.is_prime(x)):
             return False
         
     return True

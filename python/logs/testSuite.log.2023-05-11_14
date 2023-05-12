@@ -1,0 +1,11 @@
+2023-05-11 14:11:38,725 - root - INFO - euler009 : 21 - Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:15:02,523 - root - INFO - euler009 : 21 - Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:21:19,400 - root - INFO - euler009 : 22 - Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:26:55,115 - root - INFO - euler009 : 22 - Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:27:26,503 - root - INFO - euler009 : 22 - Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:44:09,334 - INFO [ euler009.py:22 - euler009() ] Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:45:51,951 - INFO [euler009.py - euler009():22] Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:46:32,944 - INFO [euler009.py - euler009():22] Found triplets 3, 4, 5 that sum to 12
+2023-05-11 14:46:32,953 - INFO [euler009.py - euler009():22] Found triplets 200, 375, 425 that sum to 1000
+2023-05-11 14:46:52,639 - INFO [euler009.py - euler009():22] Found triplets 3, 4, 5, which sum to 12
+2023-05-11 14:46:52,647 - INFO [euler009.py - euler009():22] Found triplets 200, 375, 425, which sum to 1000

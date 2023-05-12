@@ -33,7 +33,7 @@ while True:
     square = side * side 
     
     for i in xrange(1,4):
-        if prime.isprime(square - i * (side - 1)):
+        if prime.is_prime(square - i * (side - 1)):
             primeCount += 1
             
     if 10 * primeCount < diagonalCount:

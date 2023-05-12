@@ -34,7 +34,7 @@ def is_rotational_prime(n):
         return False
      
     for x in rotations(n):
-        if not prime.isprime(x):
+        if not prime.is_prime(x):
             return False
 
     return True

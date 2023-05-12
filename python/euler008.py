@@ -1,19 +1,13 @@
-'''
-Find the greatest product of five consecutive digits in the 1000-digit number.
+"""
+The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+
+Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
+What is the value of this product?
 
 @author: Greg Charles
-'''
-import time
+"""
+from functools import reduce
 
-def MultiplyDigits(digits):
-    total = 1
-    i = 0
-    while (i < len(digits)):
-        total *= int(digits[i])
-        i += 1
-
-    return total
-        
 number = '\
 73167176531330624919225119674426574742355349194934\
 96983520312774506326239578318016984801869478851843\
@@ -36,23 +30,30 @@ number = '\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450'
 
-start = time.clock() 
+def euler008(n: int) -> int:
+    max_prod = 0
+    max_possible = 9 ** n
 
-length = len(number)
-startPos = 0
-maxProduct = 0
+    start = 0
+    end = len(number)
+    while start < (end - n):
+        if number[start + n - 1] == '0':
+            start += n
+        else:
+            prod = multiply_digits(number[start:start + n])
+            if prod == max_possible:
+                return max_possible
+            if prod > max_prod:
+                max_prod = prod
+            start += 1
 
-while (startPos < length-5):
-    digits = number[startPos:startPos+5]
-    if (digits[-1] == '0'):
-        startPos += 5
-    else:
-        product = MultiplyDigits(digits)
-        if (product > maxProduct):
-            #print 'new max ', product, ' for ', digits
-            maxProduct = product
-            
-        startPos += 1
-    
-print maxProduct
-print 'Total time = ', time.clock() - start
+    return max_prod
+
+
+def multiply_digits(digits:str) -> int:
+    return reduce(lambda total, digit: total * int(digit), digits, 1)
+
+
+if __name__ == '__main__':
+    print(euler008(4))
+    print(euler008(13))

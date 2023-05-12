@@ -69,26 +69,26 @@ class ContinuedFraction(object):
         return string
 
 num = 61
-print "sqrt of ", num, ": ", math.sqrt(num)
+print("sqrt of ", num, ": ", math.sqrt(num))
 aList = CF_of_sqrt(num)
-print "CF: ", aList
+print("CF: ", aList)
 
 hList = [aList[0], aList[1]*aList[0] + 1]
 kList = [1, aList[1]]
-print hList[0], kList[0]
-print hList[1], kList[1]
+print(hList[0], kList[0])
+print(hList[1], kList[1])
 
 n = 2
 while n < 100:
     i = (n - 1) % (len(aList)-1) + 1
-    print 'i = ', i
+    print('i = ', i)
     h = aList[i] * hList[-1] + hList[-2]
     k = aList[i] * kList[-1] + kList[-2]
     result =  h * h - num * k * k
-    print h, k, abs(float(h) / float(k) - math.sqrt(num)), result
+    print(h, k, abs(float(h) / float(k) - math.sqrt(num)), result)
 
     if h * h - 61 * k * k == 1:
-        print "Found it! ", h, k
+        print( "Found it! ", h, k)
         break
 
     hList.append(h)
