@@ -23,7 +23,7 @@ Created on Oct 3, 2010
 
 @author: Greg Charles
 '''
-import prime
+import euler_lib
 import time
 
 start = time.clock()

@@ -21,7 +21,7 @@ Created on Nov 10, 2010
 
 @author: Greg Charles
 '''
-import prime
+import euler_lib
 
 side = 7
 diagonalCount = 13

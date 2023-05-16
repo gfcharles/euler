@@ -1,16 +1,20 @@
 """
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers
+is 9009 = 91 x 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 """
 import logging
 
+from euler import euler_problem
 
-def euler004(input_value:int) -> int:
+
+@euler_problem
+def euler004(n:int|str) -> int:
     # Reset counter for diagnostics
     is_palindrome.counter = 0
 
-    digits = input_value
+    digits = int(n)
     max_found = 0
 
     for x in range(10 ** digits - 1, 0, -1):
@@ -25,7 +29,7 @@ def euler004(input_value:int) -> int:
                 max_found = test
                 break
 
-    logging.debug(f"Total palindrome tests for {digits} digits was {is_palindrome.counter}")
+    logging.info(f"Total palindrome tests for {digits} digits was {is_palindrome.counter}")
     return max_found
 
 def is_palindrome(input_value) -> bool:
@@ -40,7 +44,5 @@ def is_palindrome(input_value) -> bool:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
-
     print(euler004(2))
     print(euler004(3))

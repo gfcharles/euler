@@ -1,6 +1,6 @@
-from test_euler_int import TestEulerInt, TestEulerIntData
+from test_euler import TestEuler, TestEulerSetup
 from euler007 import euler007
 
-class TestEuler007(TestEulerInt):
+class TestEuler007(TestEulerSetup, TestEuler):
     problem_number = 7
     function = euler007

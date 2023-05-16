@@ -1,4 +1,4 @@
-'''
+"""
 You are given the following information, but you may prefer to do some research for yourself.
 
     * 1 Jan 1900 was a Monday.
@@ -11,20 +11,22 @@ You are given the following information, but you may prefer to do some research 
     * A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
 
 How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+"""
+from datetime import date
+from euler import euler_problem
 
-Created on Sep 20, 2010
+@euler_problem
+def euler019(unused='') -> int:
+    if unused and unused != 'challenge':
+        raise Exception(f'Unexpected input parameter: {unused}')
 
-@author: Greg Charles
-'''
-from datetime import date, timedelta
+    return count(
+        filter(lambda d: d.weekday() == 6,
+               (date(year, month, day=1) for year in range(1901, 2001) for month in range(1, 13))))
 
-startDate = date(1901, 1, 1)
-endDate = date(2000, 12, 31)
+def count(it):
+    return sum(1 for x in it)
 
-currentDate, counter = startDate, 0
-while currentDate <= endDate:
-    if currentDate.day == 1 and currentDate.weekday() == 6: # 6 is Sunday in Python
-        counter += 1
-    currentDate += timedelta(days = 1)
-    
-print counter
+
+if __name__ == '__main__':
+    print(euler019())

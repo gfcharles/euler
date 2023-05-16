@@ -8,13 +8,14 @@ The square of the sum of the first ten natural numbers is,
 Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 - 385 = 2640.
 
 Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
-
-@author: Greg Charles
-
 """
-def euler006(n: int) -> int:
+from euler import euler_problem
+
+
+@euler_problem
+def euler006(n:int|str) -> int:
     # Square of sum turns out to be the same as sum of cubes, so that simplifies things.
-    return sum(x ** 3 - x ** 2 for x in range(1, n + 1))
+    return sum(x ** 3 - x ** 2 for x in range(1, int(n) + 1))
 
 
 if __name__ == '__main__':

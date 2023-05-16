@@ -1,18 +1,22 @@
-'''
+"""
 Starting in the top left corner of a 2x2 grid, there are 6 routes (without backtracking) to the bottom right corner.
 
 How many routes are there through a 20x20 grid?
 
-Created on Sep 19, 2010
-
-@author: Greg Charles
-
 Note: The only moves are right and down, and every solution must have 40 moves, with 20 rights, and 20 downs.
       Therefore, the number of solutions is the same as the number of ways to choose 20 rights from 40 moves.
+"""
+from functools import reduce
 
-'''
-def prod(x,y):
-    return x * y
+from euler import euler_problem
+
+@euler_problem
+def euler015(n:int|str) -> int:
+    n = int(n)
+    return nCr(2 * n, n)
+
+def prod(nums):
+    return reduce(lambda x, y: x * y, nums)
 
 def nCr(n,r):
     # Sanity
@@ -22,6 +26,8 @@ def nCr(n,r):
     # Improves efficiency
     r = min(n - r, r)
 
-    return reduce(prod, range(n, (n-r), -1)) / reduce(prod, range(1,r+1))
+    return prod(range(n, n - r, -1)) // prod(range(1, r + 1))
 
-print nCr(40,20)
+if __name__ == '__main__':
+    print(euler015(2))
+    print(euler015(20))

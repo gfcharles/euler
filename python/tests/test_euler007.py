@@ -1,4 +1,4 @@
-from test_euler_int import TestEulerInt, TestEulerIntData
+from test_euler_int import TestEuler, TestEulerIntData
 from euler007 import euler007
 
 class TestEuler007(TestEulerInt):

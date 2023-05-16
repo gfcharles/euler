@@ -13,7 +13,7 @@ Created on Oct 30, 2010
 '''
 from sets import Set
 import re
-import prime
+import euler_lib
 
 def truncations(n):
     truncations = Set([])

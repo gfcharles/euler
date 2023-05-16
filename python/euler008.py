@@ -8,6 +8,8 @@ What is the value of this product?
 """
 from functools import reduce
 
+from euler import euler_problem
+
 number = '\
 73167176531330624919225119674426574742355349194934\
 96983520312774506326239578318016984801869478851843\
@@ -30,7 +32,9 @@ number = '\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450'
 
-def euler008(n: int) -> int:
+@euler_problem
+def euler008(n:int|str) -> int:
+    n = int(n)
     max_prod = 0
     max_possible = 9 ** n
 

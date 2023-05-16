@@ -9,7 +9,7 @@ Created on Oct 30, 2010
 
 @author: Greg Charles
 '''
-import prime
+import euler_lib
 import re
 from sets import Set
 

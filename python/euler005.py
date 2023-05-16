@@ -5,10 +5,12 @@ What is the smallest positive number that is evenly divisible by all the numbers
 
 @author: Greg Charles
 """
-import time
+from euler import euler_problem
 
-def euler005(input_value: int) -> int:
-    return lcm_of_list(list(range(2, input_value + 1)))
+
+@euler_problem
+def euler005(n:int|str) -> int:
+    return lcm_of_list(list(range(2, int(n) + 1)))
 
 
 # Recursively split the list to reduce the number of lcm computations.
@@ -56,7 +58,5 @@ def gcd(a: int, b: int) -> int:
 
 # Get the least common multiple of all numbers from 1 to 20
 if __name__ == '__main__':
-    start = time.time()
     print(euler005(10))
     print(euler005(20))
-    print(f"{(time.time() - start) * 1000} ms")

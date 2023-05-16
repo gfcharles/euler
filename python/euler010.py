@@ -3,11 +3,13 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
 """
-from prime import prime_generator
+from euler import euler_problem
+from euler_lib import prime_generator
 from itertools import takewhile
 
-def euler010(n: int) -> int:
-    return sum(takewhile(lambda p: p < n, prime_generator()))
+@euler_problem
+def euler010(n:int|str) -> int:
+    return sum(takewhile(lambda p: p < int(n), prime_generator()))
 
 
 if __name__ == '__main__':

@@ -11,7 +11,8 @@ import logging
 from euler import euler_problem
 
 @euler_problem
-def euler009(n: int) -> int:
+def euler009(n:int|str) -> int:
+    n = int(n)
     for c in range(n - 2, 2, -1):
         for b in range(n - c - 1, 0, -1):
             a = n - c - b
