@@ -1,6 +1,6 @@
-from test_euler_int import TestEuler, TestEulerIntData
+from config.test_euler import TestEuler, TestEulerSetup
 from euler007 import euler007
 
-class TestEuler007(TestEulerInt):
-    def __init__(self, *args):
-        super().__init__(7, euler007, *args)
+class TestEuler007(TestEulerSetup, TestEuler):
+    problem_number = 7
+    function = euler007

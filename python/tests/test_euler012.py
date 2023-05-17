@@ -1,4 +1,4 @@
-from test_euler import TestEuler, TestEulerSetup
+from config.test_euler import TestEuler, TestEulerSetup
 from euler012 import euler012
 
 class TestEuler012(TestEulerSetup, TestEuler):
