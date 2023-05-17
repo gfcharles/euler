@@ -1,4 +1,6 @@
 from functools import reduce
+import itertools
+from math import prod
 from typing import Generator
 
 from data_loader import load_primes
@@ -54,11 +56,7 @@ def factor_map(n:int) -> FactorMap:
 
 
 def product_of(fm:FactorMap) -> int:
-    def _prod(nums):
-        return reduce(lambda x, y: x * y, nums)
-        pass
-
-    return _prod(fct ** fm[fct] for fct in fm.factors())
+    return prod(fct ** fm[fct] for fct in fm.factors())
 
 def lcm(*values: int) -> int:
     return lcm_by_factor_maps(list(map(factor_map, *values)))

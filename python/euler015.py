@@ -7,6 +7,7 @@ Note: The only moves are right and down, and every solution must have 40 moves, 
       Therefore, the number of solutions is the same as the number of ways to choose 20 rights from 40 moves.
 """
 from functools import reduce
+from math import prod
 
 from euler import euler_problem
 
@@ -14,9 +15,6 @@ from euler import euler_problem
 def euler015(n:int|str) -> int:
     n = int(n)
     return nCr(2 * n, n)
-
-def prod(nums):
-    return reduce(lambda x, y: x * y, nums)
 
 def nCr(n,r):
     # Sanity
