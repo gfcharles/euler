@@ -21,7 +21,7 @@ What is the value of the first triangle number to have over five hundred divisor
 from typing import Generator
 
 from euler import euler_problem
-from euler_lib import count_factors
+from common.euler_lib import count_factors
 
 @euler_problem
 def euler012(n:int|str) -> int:

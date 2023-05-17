@@ -4,7 +4,7 @@ The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 """
 from euler import euler_problem
-from euler_lib import prime_generator
+from common.euler_lib import prime_generator
 from itertools import takewhile
 from math import sqrt
 

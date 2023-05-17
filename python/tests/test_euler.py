@@ -3,7 +3,7 @@ Base class for Euler problem that takes integer input and returns integer result
 """
 from unittest import TestCase
 from time import time
-from data_loader import load_solutions
+from common.data_loader import load_solutions
 import logging
 from euler import config_logging
 

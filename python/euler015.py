@@ -6,7 +6,6 @@ How many routes are there through a 20x20 grid?
 Note: The only moves are right and down, and every solution must have 40 moves, with 20 rights, and 20 downs.
       Therefore, the number of solutions is the same as the number of ways to choose 20 rights from 40 moves.
 """
-from functools import reduce
 from math import prod
 
 from euler import euler_problem

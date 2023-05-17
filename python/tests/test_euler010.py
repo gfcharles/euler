@@ -1,4 +1,4 @@
-from config.test_euler import TestEuler, TestEulerSetup
+from tests.test_euler import TestEuler, TestEulerSetup
 from euler010 import euler010
 
 class TestEuler010(TestEulerSetup, TestEuler):

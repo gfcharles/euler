@@ -1,9 +1,8 @@
 from functools import reduce
-import itertools
 from math import prod
 from typing import Generator
 
-from data_loader import load_primes
+from common.data_loader import load_primes
 
 primes_list = load_primes()
 

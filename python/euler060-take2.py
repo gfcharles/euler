@@ -9,7 +9,6 @@ Created on Nov 11, 2010
 
 @author: Greg Charles
 '''
-import euler_lib
 
 # Arbitrarily pick 10000 as the highest prime we will check. I don't know a better way to handle this.
 allPrimes = prime.primes(10000)

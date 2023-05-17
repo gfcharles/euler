@@ -4,7 +4,7 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 Find the sum of all the primes below two million.
 """
 from euler import euler_problem
-from euler_lib import prime_generator
+from common.euler_lib import prime_generator
 from itertools import takewhile
 
 @euler_problem
