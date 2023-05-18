@@ -1,3 +1,4 @@
+import typing
 from functools import reduce
 from math import prod
 from typing import Generator
@@ -53,6 +54,18 @@ def factor_map(n:int) -> FactorMap:
             fm[p] = exp
     return fm
 
+def proper_factors(n: int):
+    yield 1
+    x = 2
+    while True:
+        if x * x > n:
+            break
+        if n % x == 0:
+            yield x
+            y = n // x
+            if x != y:
+                yield y
+        x += 1
 
 def product_of(fm:FactorMap) -> int:
     return prod(fct ** fm[fct] for fct in fm.factors())

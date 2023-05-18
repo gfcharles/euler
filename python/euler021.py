@@ -7,24 +7,14 @@ therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d
 
 Evaluate the sum of all the amicable numbers under 10000.
 """
-from math import sqrt
 from euler import euler_problem
+from common.euler_lib import proper_factors
 import logging
 
 
 @euler_problem
 def euler021(n: int|str) -> int:
     return sum(filter(is_amicable, range(2, int(n))))
-
-def proper_factors(value):
-    yield 1
-    limit = int(sqrt(value))
-    for x in range(2,limit+1):
-        if value % x == 0:
-            yield x
-            y = value // x
-            if x != y:
-                yield y
 
 def is_amicable(a):
     b = sum(proper_factors(a))

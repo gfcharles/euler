@@ -20,3 +20,6 @@ problem,sample_in,sample_out,challenge_in,challenge_out
 19,,,,171
 20,,,100,648
 21,,,10000,31626
+22,,,,871198282
+23,,,28123,4179871
+24,"{""elements"": [0, 1, 2], ""position"": 4}",120,"{""elements"": [0, 1, 2,3,4,5,6,7,8,9], ""position"": 1000000}",2783915460
