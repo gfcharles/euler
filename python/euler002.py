@@ -7,21 +7,11 @@ the first 10 terms will be:
 Find the sum of all the even-valued terms in the sequence which do not exceed four million.
 """
 from euler import euler_problem
-
+from common.euler_lib import fibonacci
 
 @euler_problem
 def euler002(n: int|str) -> int:
-    return sum(fibonacci(int(n), filtering_by=is_even))
-
-def fibonacci(limit, filtering_by = lambda x : True):
-    a, b = 1, 2
-    if  1 <= limit and filtering_by(a):
-        yield a
-
-    while b <= limit:
-        if filtering_by(b):
-            yield b
-        a, b = b, a + b
+    return sum(val for _, val in fibonacci(seed=(1, 2), limit=int(n), filtering_by=is_even))
 
 def is_even(x):
     return x % 2 == 0

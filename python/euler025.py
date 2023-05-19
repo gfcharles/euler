@@ -1,9 +1,9 @@
-'''
+"""
 The Fibonacci sequence is defined by the recurrence relation:
 
     F_(n) = F_(n-1) + F_(n-2), where F_(1) = 1 and F_(2) = 1.
 
-Hence the first 12 terms will be:
+Hence, the first 12 terms will be:
 
     F_(1) = 1
     F_(2) = 1
@@ -21,29 +21,16 @@ Hence the first 12 terms will be:
 The 12th term, F_(12), is the first term to contain three digits.
 
 What is the first term in the Fibonacci sequence to contain 1000 digits?
+"""
+from common.euler_lib import fibonacci
+from euler import euler_problem
 
-Created on Oct 3, 2010
 
-@author: Greg Charles
-'''
-def fibonacci(maxDigits):
-    yield 1,1
-    yield 2,1
-    n = 2
-    a, b = 1, 1
-    while (len(str(b)) < maxDigits):
-        n += 1
-        a, b = b, a+b
-        yield n, b
+@euler_problem
+def euler025(n: int|str) -> int:
+    fibonacci_gen = fibonacci(filtering_by=lambda f: len(str(f)) >= int(n))
+    return next(fibonacci_gen)[0]
 
-for fib in fibonacci(1000):
-    fib
-    
-print fib[0]
-print fib[1]
-    
-    
-#count = 0
-#nextFib(1000) {|n,fib| count = n}
-#puts count
-
+if __name__ == '__main__':
+    print(euler025(3))
+    print(euler025(1000))

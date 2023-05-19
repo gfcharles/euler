@@ -1,11 +1,13 @@
-import typing
-from functools import reduce
+from functools import reduce, cache
 from math import prod
 from typing import Generator
 
 from common.data_loader import load_primes
 
-primes_list = load_primes()
+
+@cache
+def get_primes():
+    return load_primes()
 
 class FactorMap(dict):
     def factors(self):
@@ -29,10 +31,10 @@ def compute_next_prime(last_prime: int) -> int:
             return candidate
 
 def prime_generator() -> Generator[int, None, None]:
-    for p in primes_list:
+    for p in get_primes():
         yield p
 
-    last_prime = primes_list[-1]
+    last_prime = get_primes()[-1]
 
     while True:
         last_prime = compute_next_prime(last_prime)
@@ -113,7 +115,7 @@ def is_prime(n:int|str) -> bool:
         return False
 
     # Check n against known primes.
-    for x in primes_list:
+    for x in get_primes():
         if x * x > n:
             return True
         if n == x or n % x == 0:
@@ -121,3 +123,31 @@ def is_prime(n:int|str) -> bool:
 
     # This method currently can only check up to the square of the last prime loaded from data.
     raise OverflowError
+
+def fibonacci(seed= (1,1), starting_term = 1, filtering_by = lambda x : True, limit = None):
+    a, b = seed
+    term = starting_term
+
+    if  (limit is None or a <= limit) and filtering_by(a):
+        yield term, a
+
+    term +=1
+
+    while limit is None or b <= limit:
+        if filtering_by(b):
+            yield term, b
+        term += 1
+        a, b = b, a + b
+
+if __name__ == '__main__':
+    fib = fibonacci(seed=(0, 1), starting_term=0)
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
+    print(next(fib))
