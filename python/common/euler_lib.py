@@ -72,8 +72,13 @@ def proper_factors(n: int):
 def product_of(fm:FactorMap) -> int:
     return prod(fct ** fm[fct] for fct in fm.factors())
 
+# Lowest common multiple
 def lcm(*values: int) -> int:
     return lcm_by_factor_maps(list(map(factor_map, *values)))
+
+# Greatest common divisor
+def gcd(a: int, b: int) -> int:
+    return (a * b) // lcm([a, b])
 
 def lcm_by_factor_maps(factor_maps) -> int:
     merged = FactorMap()
