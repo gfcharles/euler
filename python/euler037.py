@@ -1,42 +1,43 @@
-'''
-The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from 
-left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly we can work from right to left: 
+"""
+The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from
+left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly, we can work from right to left:
 3797, 379, 37, and 3.
 
-Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
+Find the sum of the only eleven primes that are both truncate-able from left to right and right to left.
 
-NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
-
-Created on Oct 30, 2010
-
-@author: Greg Charles
-'''
-from sets import Set
+NOTE: 2, 3, 5, and 7 are not considered to be truncate-able primes.
+"""
 import re
+from itertools import takewhile
+from typing import Generator
+
+from euler import euler_problem
+from common.euler_lib import is_prime, prime_generator
+
+@euler_problem()
+def euler037(n:int|str) -> int:
+    gen = takewhile(lambda x: x < int(n), prime_generator())
+    return sum(x for x in gen if is_truncations_prime(x))
 
 
-def truncations(n):
-    truncations = Set([])
-    
+def truncations(n:int) -> Generator[int, None, None]:
     string = str(n)
-    for i in xrange(1,len(string)):
-        truncations.add(int(string[:i]))
-        truncations.add(int(string[-i:]))
-                        
-    return truncations
+    for i in range(1, len(string)):
+        yield int(string[:i])
+        yield int(string[-i:])
 
-def is_truncatable_prime(n):
-    if (n < 10):
+def is_truncations_prime(n: int) -> bool:
+    if n < 10:
         return False
     
     string = str(n)
-    if re.search("[0468]", string) or re.search(".2", string):
+    if re.search("[0468]", string) or re.search(".[25]", string):
         return False
     
     for x in truncations(n):
-        if (not prime.is_prime(x)):
+        if not is_prime(x):
             return False
-        
     return True
- 
-print sum(x for x in prime.primes(1000000) if is_truncatable_prime(x))     
+
+if __name__ == '__main__':
+    print(euler037(1_000_000))

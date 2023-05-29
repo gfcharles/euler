@@ -1,7 +1,7 @@
 '''
 What is the maximum 16-digit string for a "magic" 5-gon ring?
 
-Full description with pictures at http://projecteuler.net/index.php?section=problems&id=68
+Full description with pictures at https://projecteuler.net/index.php?section=problems&id=68
 
 Created on Feb 28, 2011
 

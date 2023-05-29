@@ -7,7 +7,7 @@ Find the minimal path sum from the top left to the bottom right by only moving r
 """
 from typing import Tuple
 
-import euler
+from euler import euler_problem
 
 sample_data = \
 """131,673,234,103,18
@@ -16,7 +16,7 @@ sample_data = \
 537,699,497,121,956
 805,732,524,37,331"""
 
-@euler.euler_problem
+@euler_problem()
 def euler081(file_name:str) -> int:
     if file_name == 'sample':
         text = sample_data

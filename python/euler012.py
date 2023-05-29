@@ -23,7 +23,7 @@ from typing import Generator
 from euler import euler_problem
 from common.euler_lib import count_factors
 
-@euler_problem
+@euler_problem()
 def euler012(n:int|str) -> int:
     return next(filter(lambda t_num: count_factors(t_num) > int(n), triangle_num_gen()))
 

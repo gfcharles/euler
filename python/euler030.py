@@ -16,7 +16,7 @@ from itertools import count, takewhile
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler030(n:int|str) -> int:
     n = int(n)
     return sum(x for x in range(10, get_upper_bound(n)) if is_sum_of_digits(x, n))

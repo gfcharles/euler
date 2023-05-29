@@ -55,7 +55,7 @@ challenge_triangle = \
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 
-@euler_problem
+@euler_problem()
 def euler018(s: str) -> int:
     if s == 'sample':
         triangle = sample_triangle

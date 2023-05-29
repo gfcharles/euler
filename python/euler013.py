@@ -106,7 +106,7 @@ data = """
 53503534226472524250874054075591789781264330331690 
 """
 
-@euler_problem
+@euler_problem()
 def euler013(n:int|str) -> int:
     n = int(n)
     return int(str(sum(int(row) for row in data.splitlines() if row))[0:n])

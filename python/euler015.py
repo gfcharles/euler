@@ -10,7 +10,7 @@ from math import prod
 
 from euler import euler_problem
 
-@euler_problem
+@euler_problem()
 def euler015(n:int|str) -> int:
     n = int(n)
     return nCr(2 * n, n)

@@ -12,7 +12,7 @@ import logging
 import euler
 
 
-@euler.euler_problem
+@euler.euler_problem()
 def euler034(_='n/a'):
     return sum(x for x in range(10, get_upper_bound()) if is_sum_of_digit_factorials(x))
 

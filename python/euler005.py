@@ -8,7 +8,7 @@ What is the smallest positive number that is evenly divisible by all the numbers
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler005(n:int|str) -> int:
     return lcm_of_list(list(range(2, int(n) + 1)))
 

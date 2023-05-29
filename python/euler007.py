@@ -7,7 +7,7 @@ from euler import euler_problem
 from common.euler_lib import prime_generator
 
 
-@euler_problem
+@euler_problem()
 def euler007(n:int|str) -> int:
     gen = prime_generator()
     for i in range(int(n) - 1):

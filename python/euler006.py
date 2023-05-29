@@ -12,7 +12,7 @@ Find the difference between the sum of the squares of the first one hundred natu
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler006(n:int|str) -> int:
     # Square of sum turns out to be the same as sum of cubes, so that simplifies things.
     return sum(x ** 3 - x ** 2 for x in range(1, int(n) + 1))

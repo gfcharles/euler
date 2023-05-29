@@ -12,7 +12,7 @@ from common.euler_lib import proper_factors
 import logging
 
 
-@euler_problem
+@euler_problem()
 def euler021(n: int|str) -> int:
     return sum(filter(is_amicable, range(2, int(n))))
 

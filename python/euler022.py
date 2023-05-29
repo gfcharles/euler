@@ -11,7 +11,7 @@ What is the total of all the name scores in the file?
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler022(unused='') -> int:
     if unused and unused != 'challenge':
         raise Exception(f'Unexpected input parameter: {unused}')

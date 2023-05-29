@@ -5,7 +5,7 @@ What is the sum of the digits of the number 2^(1000)?
 """
 from euler import euler_problem
 
-@euler_problem
+@euler_problem()
 def euler016(n:int|str) -> int:
     n = int(n)
     return sum(map(lambda x: int(x), str(1 << n)))

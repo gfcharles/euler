@@ -15,7 +15,7 @@ from typing import Tuple
 import euler
 
 
-@euler.euler_problem
+@euler.euler_problem()
 def euler032(_='n/a') -> int:
     product_set = set()
     for p in itertools.permutations('123456789'):

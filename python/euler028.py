@@ -18,7 +18,7 @@ Created on Oct 3, 2010
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler028(n:int|str) -> int:
     # Sort of a tricksy solution. The sum of the diagonals can be thought of as the sum of the corners of the
     # concentric square, each with an odd number of elements per side, and dimension two smaller tha square it nests in.

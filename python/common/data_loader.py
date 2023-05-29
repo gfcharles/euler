@@ -9,10 +9,32 @@ def load_solutions():
         return solutions
 
 def load_primes():
-    logging.debug('Loading primes ...')
+    logging.debug('Loading 1000 primes ...')
     with open('./euler_data/primes1000.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         return list(map(lambda row: int(row['prime']), reader))
 
+def load_more_primes():
+    logging.debug('Loading 10,000 primes ...')
+
+    with open('./euler_data/primes10000.txt', newline='') as datafile:
+        rows =  datafile.readlines()[100:]
+        for row in rows:
+            for p in  map(int, row.split(':')[1].strip().split(' ')):
+                yield p
+
+
 if __name__ == '__main__':
-    print(load_solutions())
+    gen = load_large_primes()
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+

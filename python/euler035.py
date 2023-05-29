@@ -9,11 +9,10 @@ import re
 from itertools import takewhile
 from typing import Iterator
 import logging
-
-import euler
+from euler import euler_problem
 from common.euler_lib import is_prime, prime_generator
 
-@euler.euler_problem
+@euler_problem()
 def euler035(n:int|str) -> int:
     return count(filter(is_rotational_prime, (x for x in primes(int(n)))))
 
@@ -54,7 +53,5 @@ def primes(limit:int) -> Iterator[int]:
 
 
 if __name__ == '__main__':
-    euler.config_log_level(logging.DEBUG)
-
     print(euler035(100))
     print(euler035(1_000_000))

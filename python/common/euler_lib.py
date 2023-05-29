@@ -2,8 +2,9 @@ from functools import reduce, cache
 from math import prod
 from typing import Generator
 
-from common.data_loader import load_primes
+from common.data_loader import load_primes, load_more_primes
 
+go_big = False
 
 @cache
 def get_primes():
@@ -78,7 +79,7 @@ def lcm(*values: int) -> int:
 
 # Greatest common divisor
 def gcd(a: int, b: int) -> int:
-    return (a * b) // lcm([a, b])
+    return (a * b) // lcm(a, b)
 
 def lcm_by_factor_maps(factor_maps) -> int:
     merged = FactorMap()
@@ -126,6 +127,13 @@ def is_prime(n:int|str) -> bool:
         if n == x or n % x == 0:
             return False
 
+    # Time for the big guns: load up the file of 10,000 primes.
+    for x in load_more_primes():
+        if x * x > n:
+            return True
+        if n == x or n % x == 0:
+            return False
+
     # This method currently can only check up to the square of the last prime loaded from data.
     raise OverflowError
 
@@ -143,16 +151,3 @@ def fibonacci(seed= (1,1), starting_term = 1, filtering_by = lambda x : True, li
             yield term, b
         term += 1
         a, b = b, a + b
-
-if __name__ == '__main__':
-    fib = fibonacci(seed=(0, 1), starting_term=0)
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))
-    print(next(fib))

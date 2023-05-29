@@ -16,7 +16,7 @@ from typing import Tuple
 from math import gcd
 import euler
 
-@euler.euler_problem
+@euler.euler_problem()
 def euler033(_='n/a') -> int:
     numerator, denominator = \
         reduce(lambda total, element: multiply_tuples(total, element),

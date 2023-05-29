@@ -8,7 +8,7 @@ from common.euler_lib import prime_generator
 from itertools import takewhile
 from math import sqrt
 
-@euler_problem
+@euler_problem()
 def euler003(n: int|str) -> int:
     # Get list of possible prime factors for input value in descending value
     primes_list = list(takewhile(lambda p: p <= int(sqrt(int(n))), prime_generator()))

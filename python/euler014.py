@@ -19,7 +19,7 @@ from functools import cache
 
 from euler import euler_problem
 
-@euler_problem
+@euler_problem()
 def euler014(n:int|str) -> int:
     n = int(n)
     max_collatz = 0

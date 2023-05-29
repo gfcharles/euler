@@ -10,6 +10,10 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 from functools import cache
 import json
 
+from euler import euler_problem
+
+
+@euler_problem()
 def euler024(json_text:str = None, elements:list = None, position:int = 0):
     if elements is None:
         elements, position = extract(json_text)

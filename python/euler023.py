@@ -20,7 +20,7 @@ from euler import euler_problem
 MINIMUM_ABUNDANT_NUMBER = 12
 
 
-@euler_problem
+@euler_problem()
 def euler023(n: int|str) -> int:
     return sum(x for x in range(1, int(n) + 1) if not is_sum_of_two_abundant_numbers(x))
 

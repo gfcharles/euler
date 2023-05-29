@@ -21,7 +21,7 @@ import logging
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler026(n:int|str) -> int:
     max_x = 0
     max_cycle = 0

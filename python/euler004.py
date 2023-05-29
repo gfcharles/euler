@@ -9,7 +9,7 @@ import logging
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler004(n:int|str) -> int:
     # Reset counter for diagnostics
     is_palindrome.counter = 0

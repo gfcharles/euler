@@ -7,7 +7,7 @@ from euler import euler_problem
 from common.euler_lib import prime_generator
 from itertools import takewhile
 
-@euler_problem
+@euler_problem()
 def euler010(n:int|str) -> int:
     return sum(takewhile(lambda p: p < int(n), prime_generator()))
 

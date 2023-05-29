@@ -9,7 +9,7 @@ Find the sum of all the even-valued terms in the sequence which do not exceed fo
 from euler import euler_problem
 from common.euler_lib import fibonacci
 
-@euler_problem
+@euler_problem()
 def euler002(n: int|str) -> int:
     return sum(val for _, val in fibonacci(seed=(1, 2), limit=int(n), filtering_by=is_even))
 

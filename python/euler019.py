@@ -15,7 +15,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 from datetime import date
 from euler import euler_problem
 
-@euler_problem
+@euler_problem()
 def euler019(unused='') -> int:
     if unused and unused != 'challenge':
         raise Exception(f'Unexpected input parameter: {unused}')

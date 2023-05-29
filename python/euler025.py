@@ -26,7 +26,7 @@ from common.euler_lib import fibonacci
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler025(n: int|str) -> int:
     fibonacci_gen = fibonacci(filtering_by=lambda f: len(str(f)) >= int(n))
     return next(fibonacci_gen)[0]

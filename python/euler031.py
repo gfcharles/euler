@@ -17,7 +17,7 @@ from euler import euler_problem
 from euler024 import extract
 
 
-@euler_problem
+@euler_problem()
 def euler031(json_text:str=None, coins:list[int]=None, amount:int=None, callback:Callable=None) -> int:
     if coins is None:
         coins, amount = extract(json_text)

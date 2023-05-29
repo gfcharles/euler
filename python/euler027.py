@@ -26,7 +26,7 @@ from common.euler_lib import is_prime
 from euler import euler_problem
 
 
-@euler_problem
+@euler_problem()
 def euler027(n:int|str) -> int:
     n = abs(int(n))
     primes, a, b =  max_by_sequence_length(

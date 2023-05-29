@@ -1,5 +1,4 @@
-# coding=UTF8
-'''
+"""
 Starting with 1 and spiralling anticlockwise in the following way, a square spiral with side length 7 is formed.
 
 37 36 35 34 33 32 31
@@ -10,32 +9,33 @@ Starting with 1 and spiralling anticlockwise in the following way, a square spir
 42 21 22 23 24 25 26
 43 44 45 46 47 48 49
 
-It is interesting to note that the odd squares lie along the bottom right diagonal, but what is more interesting is that 
+It is interesting to note that the odd squares lie along the bottom right diagonal, but what is more interesting is that
 8 out of the 13 numbers lying along both diagonals are prime; that is, a ratio of 8/13 ≈ 62%.
 
-If one complete new layer is wrapped around the spiral above, a square spiral with side length 9 will be formed. 
-If this process is continued, what is the side length of the square spiral for which the ratio of primes along both 
+If one complete new layer is wrapped around the spiral above, a square spiral with side length 9 will be formed.
+If this process is continued, what is the side length of the square spiral for which the ratio of primes along both
 diagonals first falls below 10%?
+"""
+from common.euler_lib import is_prime
+from euler import euler_problem
 
-Created on Nov 10, 2010
 
-@author: Greg Charles
-'''
+@euler_problem()
+def euler058(n:float|str) -> int:
+    side = 3
+    diagonal_count = 5
+    prime_count = 3
 
-side = 7
-diagonalCount = 13
-primeCount = 8
-
-while True:
-    side += 2
-    diagonalCount += 4
-    square = side * side 
+    while  prime_count >= float(n) * diagonal_count:
+        side += 2
+        diagonal_count += 4
+        square = side * side
     
-    for i in xrange(1,4):
-        if prime.is_prime(square - i * (side - 1)):
-            primeCount += 1
-            
-    if 10 * primeCount < diagonalCount:
-        break
-    
-print side
+        for i in range(1, 4):
+            if is_prime(square - i * (side - 1)):
+                prime_count += 1
+
+    return side
+
+if __name__ == '__main__':
+    print(euler058(0.10))
