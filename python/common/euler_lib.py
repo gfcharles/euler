@@ -4,11 +4,19 @@ from typing import Generator
 
 from common.data_loader import load_primes, load_more_primes
 
-go_big = False
-
 @cache
 def get_primes():
     return load_primes()
+
+@cache
+def get_more_primes():
+    return load_more_primes()
+
+@cache
+def get_max_primes():
+    all_primes = get_primes().copy()
+    all_primes.extend(get_more_primes())
+    return all_primes
 
 class FactorMap(dict):
     def factors(self):
@@ -32,10 +40,14 @@ def compute_next_prime(last_prime: int) -> int:
             return candidate
 
 def prime_generator() -> Generator[int, None, None]:
+    p = 0
     for p in get_primes():
         yield p
 
-    last_prime = get_primes()[-1]
+    for p in get_more_primes():
+        yield p
+
+    last_prime = p
 
     while True:
         last_prime = compute_next_prime(last_prime)
@@ -121,14 +133,7 @@ def is_prime(n:int|str) -> bool:
         return False
 
     # Check n against known primes.
-    for x in get_primes():
-        if x * x > n:
-            return True
-        if n == x or n % x == 0:
-            return False
-
-    # Time for the big guns: load up the file of 10,000 primes.
-    for x in load_more_primes():
+    for x in prime_generator():
         if x * x > n:
             return True
         if n == x or n % x == 0:

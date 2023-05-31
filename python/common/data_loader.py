@@ -17,24 +17,11 @@ def load_primes():
 def load_more_primes():
     logging.debug('Loading 10,000 primes ...')
 
+    more_primes = list()
     with open('./euler_data/primes10000.txt', newline='') as datafile:
-        rows =  datafile.readlines()[100:]
+        rows =  datafile.readlines()[100:]  # skip first 1000 primes, already loaded
         for row in rows:
-            for p in  map(int, row.split(':')[1].strip().split(' ')):
-                yield p
+            if row.strip() != '': # skip blank lines
+                more_primes.extend(map(int, row.split(':')[1].strip().split(' ')))
 
-
-if __name__ == '__main__':
-    gen = load_large_primes()
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-
+    return more_primes

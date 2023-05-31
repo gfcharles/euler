@@ -19,49 +19,48 @@ click and 'Save Link/Target As...'), a file containing the encrypted ASCII codes
 must contain common English words, decrypt the message and find the sum of the ASCII values in the original text.
 """
 import itertools
-import gregutils
+import logging
 import re
+import string
 
-'''
- Reads the encrypted message from the file, which is a comma-separated list of encrypted ASCII values.
-'''
-def readFile():
-    f = open(gregutils.dataDir() + 'cipher1.txt', 'r')
-    values = map(int, f.read().split(','))
-    return values
+from euler import euler_problem
+
+# @euler_problem(logging_level=logging.DEBUG, timing=True)
+@euler_problem()
+def euler059(filename:str) -> int:
+    cipher_text = read_file(filename)
+
+    # For each possible key, decrypt the cipher text and see if we have an English plain text message.
+    for key in itertools.product(string.ascii_lowercase, repeat=3):
+        plain_text = decrypt(cipher_text, list(key))
+        if is_english_text(plain_text):
+            logging.debug(f'Key = {key}')
+            logging.debug(plain_text)
+            return sum(map(ord, plain_text))
 
 
-'''
-Decrypts the array of ASCII values representing the cipher text.
-Returns the plain text as a string
-'''
-def decrypt(values, key):
-    length = len(key)
-    counter = 0
-    chars = []
-    keyValues = map(ord, key)
-   
-    for value in values:
-        chars.append(chr(value ^ keyValues[counter % length]))
-        counter += 1
-        
-    return ''.join(chars)
-  
-'''
-Basic test to see if the text is probably English. False positive and negatives are possible.
-'''      
-def isEnglishText(text):
+def read_file(filename:str) -> list[int]:
+    """
+     Reads the encrypted message from the file, which is a comma-separated list of encrypted ASCII values.
+    """
+    with open(f'./euler_data/{filename}') as data_file:
+        return list(map(int, data_file.read().split(',')))
+
+def decrypt(values:list[int], key:list[chr]) -> str:
+    """
+    Decrypts the array of ASCII values representing the cipher text.
+    Returns the plain text as a string
+    """
+    key_length = len(key)
+    key_values = list(map(ord, key))
+
+    return ''.join(chr(value ^ key_values[i % key_length]) for i, value in enumerate(values))
+
+def is_english_text(text):
+    """
+    Basic test to see if the text is probably English. False positive and negatives are possible.
+    """
     return re.search(' the ', text) or re.search(' and ', text)
 
-
-
-cipherText = readFile()    
-
-# For each possible key, decrypt the cipher text and see if we have an English plain text message.
-for key in itertools.product('abcdefghijklmnopqrstuvwxyz',repeat=3):
-    plainText = decrypt(cipherText, key)
-    if isEnglishText(plainText):
-        print key, plainText
-        print sum(map(ord, plainText))
-    
-
+if __name__ == '__main__':
+    print(euler059('0059_cipher.txt'))

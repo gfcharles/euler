@@ -8,12 +8,13 @@ Created on Feb 28, 2011
 @author: Greg Charles
 '''
 import itertools
-import poly
+from common import poly
+
 
 # Convenience method to compute sum of triples based on values at vertices of polygon
 def computeTriplesSum(innerList):
     sides = len(innerList)
-    totalSum = poly.triangle(2*sides)
+    totalSum = poly.triangle(2 * sides)
     innerSum = sum(innerList)
     triplesSum = totalSum + innerSum
     return sides, triplesSum

@@ -40,4 +40,7 @@ problem,sample_in,sample_out,challenge_in,challenge_out
 56,10,45,100,972
 57,8,1,1000,153
 58,,,0.10,26241
+59,,,0059_cipher.txt,129448
+60,4,792,5,26033
+61,"triangle,square,pentagonal",19291,"triangle,square,pentagonal,hexagonal,heptagonal,octagonal",28684
 81,,2427,p081_matrix.txt,427337
