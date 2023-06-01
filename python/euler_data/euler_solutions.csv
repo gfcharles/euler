@@ -20,7 +20,7 @@ problem,sample_in,sample_out,challenge_in,challenge_out
 19,,,,171
 20,,,100,648
 21,,,10000,31626
-22,,,,871198282
+22,,,p022_names.txt,871198282
 23,,,28123,4179871
 24,"{""elements"": [0, 1, 2], ""position"": 4}",120,"{""elements"": [0, 1, 2,3,4,5,6,7,8,9], ""position"": 1000000}",2783915460
 25,3,12,1000,4782
@@ -43,4 +43,7 @@ problem,sample_in,sample_out,challenge_in,challenge_out
 59,,,0059_cipher.txt,129448
 60,4,792,5,26033
 61,"triangle,square,pentagonal",19291,"triangle,square,pentagonal,hexagonal,heptagonal,octagonal",28684
+62,3,41063625,5,127035954683
+63,,,,49
 81,,2427,p081_matrix.txt,427337
+121,4,10,15,2269

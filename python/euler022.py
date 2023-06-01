@@ -12,11 +12,8 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler022(unused='') -> int:
-    if unused and unused != 'challenge':
-        raise Exception(f'Unexpected input parameter: {unused}')
-
-    with open('./euler_data/p022_names.txt', 'r') as names_file:
+def euler022(filename) -> int:
+    with open(f'./euler_data/{filename}', 'r') as names_file:
         names = sorted(nm.strip('"') for nm in names_file.readline().split(","))
         return sum(positional_name_value(idx + 1, n) for idx, n in enumerate(names))
 
@@ -28,4 +25,4 @@ def name_value(name:str) -> int:
 
 
 if __name__ == '__main__':
-    print(euler022())
+    print(euler022('p022_names.txt'))

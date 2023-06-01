@@ -1,26 +1,31 @@
-'''
+"""
 The 5-digit number, 16807=7^(5), is also a fifth power. Similarly, the 9-digit number, 134217728=8^(9),
 is a ninth power.
 
 How many n-digit positive integers exist which are also an nth power?
+"""
+import logging
+from itertools import count
+
+from euler import euler_problem
 
 
-Created on Jan. 18, 2011
+@euler_problem()
+def euler063(_:str='n/a') -> int:
+    total = 0
+    for power in count(start=1):
+        # highest number for which number ** power has power digits is 9; Lowest is 1.
+        for number in range(9, 0, -1):
+            value = number ** power
+            if len(str(value)) == power:
+                total += 1
+                logging.debug(f'{number} ** {power} = {value}')
+            elif number < 9:
+                # Try next power
+                break
+            else:
+                return total
 
-@author: Greg Charles
-'''
-counter = 0
-min, max, power = 1, 9, 1
-while max >= min:
-    base = max
-    while base >= min:
-        value = base ** power
-        if len(str(value)) == power:
-            print base, "^", power, "=", value
-            counter += 1
-        else:
-            min = base + 1
-        base -= 1
-    power += 1
 
-print "Total =", counter
+if __name__ == '__main__':
+    print(euler063())
