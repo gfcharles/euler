@@ -20,23 +20,25 @@ Considering quadratics of the form:
 Find the product of the coefficients a and b for the quadratic expression that produces the maximum number of primes
 for consecutive values of n, starting with n = 0.
 """
-from itertools import count
 import logging
+from itertools import count
+
 from common.euler_lib import is_prime
 from euler import euler_problem
 
 
 @euler_problem()
-def euler027(n:int|str) -> int:
+def euler027(n: int | str) -> int:
     n = abs(int(n))
-    primes, a, b =  max_by_sequence_length(
+    primes, a, b = max_by_sequence_length(
         consecutive_primes(a, b)
-                 for a in range(-(n - 1), n)  # |a| < n
-                 for b in range(-n, n + 1)  # |b| <= n
+        for a in range(-(n - 1), n)  # |a| < n
+        for b in range(-n, n + 1)  # |b| <= n
     )
 
     logging.info(f"Longest sequence of primes is {primes} for coefficients a = {a} and b = {b}.")
     return a * b
+
 
 def max_by_sequence_length(items):
     # Sequence count store in first position of tuple, coefficients are in the second and third positions
@@ -46,6 +48,7 @@ def max_by_sequence_length(items):
             max_item = item
 
     return max_item
+
 
 def consecutive_primes(a: int, b: int):
     n = 0

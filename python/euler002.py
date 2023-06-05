@@ -6,12 +6,14 @@ the first 10 terms will be:
 
 Find the sum of all the even-valued terms in the sequence which do not exceed four million.
 """
-from euler import euler_problem
 from common.euler_lib import fibonacci
+from euler import euler_problem
+
 
 @euler_problem()
-def euler002(n: int|str) -> int:
+def euler002(n: int | str) -> int:
     return sum(val for _, val in fibonacci(seed=(1, 2), limit=int(n), filtering_by=is_even))
+
 
 def is_even(x):
     return x % 2 == 0

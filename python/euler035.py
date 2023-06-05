@@ -5,15 +5,17 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 
 How many circular primes are there below one million?
 """
+import logging
 import re
 from itertools import takewhile
 from typing import Iterator
-import logging
-from euler import euler_problem
+
 from common.euler_lib import is_prime, prime_generator
+from euler import euler_problem
+
 
 @euler_problem()
-def euler035(n:int|str) -> int:
+def euler035(n: int | str) -> int:
     return count(filter(is_rotational_prime, (x for x in primes(int(n)))))
 
 
@@ -25,11 +27,13 @@ def rotate(n, pos=1):
     else:
         return int(string[-pos:] + string[:-pos])
 
+
 def rotations(n):
     rotation_set = set()
     for pos in range(len(str(n))):
         rotation_set.add(rotate(n, pos))
     return list(rotation_set)
+
 
 def is_rotational_prime(n):
     if n == 2:
@@ -37,7 +41,7 @@ def is_rotational_prime(n):
         return True
     elif re.search("[02468]", str(n)):
         return False
-     
+
     for x in rotations(n):
         if not is_prime(x):
             return False
@@ -45,10 +49,12 @@ def is_rotational_prime(n):
     logging.debug(f"Found: {n}")
     return True
 
-def count(it:Iterator) -> int:
+
+def count(it: Iterator) -> int:
     return sum(1 for _ in it)
 
-def primes(limit:int) -> Iterator[int]:
+
+def primes(limit: int) -> Iterator[int]:
     return (x for x in takewhile(lambda p: p < limit, prime_generator()))
 
 

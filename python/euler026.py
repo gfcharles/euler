@@ -22,7 +22,7 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler026(n:int|str) -> int:
+def euler026(n: int | str) -> int:
     max_x = 0
     max_cycle = 0
 
@@ -40,6 +40,7 @@ def euler026(n:int|str) -> int:
     logging.info(f"Max cycle for fractions 1/n with denominators less than {n} is {max_cycle} for 1/{max_x}.")
     return max_x
 
+
 def cycle_length(n: int) -> int:
     """
     Counts the cycle length of repeating decimals for 1/n. Returns 0 for terminating decimals.
@@ -48,7 +49,7 @@ def cycle_length(n: int) -> int:
     @return: cycle length of repeating decimals
     """
     while n % 2 == 0:
-        n /= 2 
+        n /= 2
     while n % 5 == 0:
         n /= 5
 

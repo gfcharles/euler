@@ -3,12 +3,12 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 
 What is the 10001^(st) prime number?
 """
-from euler import euler_problem
 from common.euler_lib import prime_generator
+from euler import euler_problem
 
 
 @euler_problem()
-def euler007(n:int|str) -> int:
+def euler007(n: int | str) -> int:
     gen = prime_generator()
     for i in range(int(n) - 1):
         next(gen)

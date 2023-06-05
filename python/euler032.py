@@ -38,17 +38,19 @@ def euler032(_='n/a') -> int:
     return sum(product_set)
 
 
-def split(permutation:str, first_factor:int, second_factor:int) -> Tuple[int,int,int]:
+def split(permutation: str, first_factor: int, second_factor: int) -> Tuple[int, int, int]:
     return (
         int(permutation[0:first_factor]),
         int(permutation[first_factor: first_factor + second_factor]),
         int(permutation[first_factor + second_factor:])
     )
 
+
 def stringify(digits) -> str:
     return ''.join(digits)
 
-def is_product(factor_1:int, factor_2:int, product:int) -> bool:
+
+def is_product(factor_1: int, factor_2: int, product: int) -> bool:
     return factor_1 * factor_2 == product
 
 

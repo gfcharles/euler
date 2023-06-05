@@ -32,8 +32,9 @@ number = '\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450'
 
+
 @euler_problem()
-def euler008(n:int|str) -> int:
+def euler008(n: int | str) -> int:
     n = int(n)
     max_prod = 0
     max_possible = 9 ** n
@@ -54,7 +55,7 @@ def euler008(n:int|str) -> int:
     return max_prod
 
 
-def multiply_digits(digits:str) -> int:
+def multiply_digits(digits: str) -> int:
     return reduce(lambda total, digit: total * int(digit), digits, 1)
 
 

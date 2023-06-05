@@ -11,7 +11,7 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler063(_:str='n/a') -> int:
+def euler063(_: str = 'n/a') -> int:
     total = 0
     for power in count(start=1):
         # highest number for which number ** power has power digits is 9; Lowest is 1.

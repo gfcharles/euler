@@ -15,7 +15,7 @@ from euler import euler_problem
 
 # @euler_problem(logging_level=logging.DEBUG, timing=True)
 @euler_problem()
-def euler060(n:int|str) -> int:
+def euler060(n: int | str) -> int:
     prime_set = [0] * int(n)  # Start set of primes as a list of n 0
     if not build_prime_set(prime_set, 0, int(n)):
         raise Exception('No set of primes found that fits the conditions')
@@ -55,6 +55,7 @@ def build_prime_set(prime_set, current_size, target_size):
 
     return False
 
+
 # Test to see that the addition of m to the known set produces a valid a new set.
 def tester(prime_set, size, candidate):
     candidate_digits = len(str(candidate))
@@ -70,12 +71,13 @@ def tester(prime_set, size, candidate):
 
     return True
 
+
 @cache
-def is_prime_cached(n:int) -> bool:
+def is_prime_cached(n: int) -> bool:
     return is_prime(n)
 
 
-def limited_prime_generator(limit:int):
+def limited_prime_generator(limit: int):
     return takewhile(lambda p: p < limit, prime_generator())
 
 

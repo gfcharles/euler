@@ -11,33 +11,36 @@ import re
 from itertools import takewhile
 from typing import Generator
 
-from euler import euler_problem
 from common.euler_lib import is_prime, prime_generator
+from euler import euler_problem
+
 
 @euler_problem()
-def euler037(n:int|str) -> int:
+def euler037(n: int | str) -> int:
     gen = takewhile(lambda x: x < int(n), prime_generator())
     return sum(x for x in gen if is_truncations_prime(x))
 
 
-def truncations(n:int) -> Generator[int, None, None]:
+def truncations(n: int) -> Generator[int, None, None]:
     string = str(n)
     for i in range(1, len(string)):
         yield int(string[:i])
         yield int(string[-i:])
 
+
 def is_truncations_prime(n: int) -> bool:
     if n < 10:
         return False
-    
+
     string = str(n)
     if re.search("[0468]", string) or re.search(".[25]", string):
         return False
-    
+
     for x in truncations(n):
         if not is_prime(x):
             return False
     return True
+
 
 if __name__ == '__main__':
     print(euler037(1_000_000))

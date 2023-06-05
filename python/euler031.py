@@ -18,27 +18,28 @@ from euler024 import extract
 
 
 @euler_problem()
-def euler031(json_text:str=None, coins:list[int]=None, amount:int=None, callback:Callable=None) -> int:
+def euler031(json_text: str = None, coins: list[int] = None, amount: int = None, callback: Callable = None) -> int:
     if coins is None:
         coins, amount = extract(json_text)
 
     return CoinCounter(coins, callback=callback).coin_combinations(amount)
 
-def extract(json_text:str) -> (list[int], int):
+
+def extract(json_text: str) -> (list[int], int):
     obj = json.loads(json_text)
     return obj['coins'], obj['amount']
 
 
 class CoinCounter(object):
-    def __init__(self, coins, callback:Callable = None):
+    def __init__(self, coins, callback: Callable = None):
         self.coins = coins
         self.coins.sort()
         self.callback = callback
 
-    def coin_combinations(self, amount:int) -> int:
+    def coin_combinations(self, amount: int) -> int:
         return self._count_combos(amount, len(self.coins) - 1, list())
 
-    def _count_combos(self, amount:int, pos:int, combo: list[Tuple[int, int]]) -> int:
+    def _count_combos(self, amount: int, pos: int, combo: list[Tuple[int, int]]) -> int:
         coin = self.coins[pos]  # Current coin value
 
         if pos == 0:
@@ -55,15 +56,17 @@ class CoinCounter(object):
                    for x in range(amount // self.coins[pos] + 1))
 
     @staticmethod
-    def _append(my_tuple:Tuple[int,int], my_list:list[Tuple[int,int]]) -> list[Tuple[int,int]]:
+    def _append(my_tuple: Tuple[int, int], my_list: list[Tuple[int, int]]) -> list[Tuple[int, int]]:
         copy_list = my_list.copy()
         copy_list.append(my_tuple)
         return copy_list
 
-def format_combo(combo:list[Tuple[int,int]]) -> str:
+
+def format_combo(combo: list[Tuple[int, int]]) -> str:
     return ', '.join(list(map(lambda el: f'{el[0]} of {el[1]}', filter(lambda el: el[0] > 0, combo))))
 
 
 if __name__ == '__main__':
     print(euler031(json_text='{"coins": [1,2,5,10,20,50,100,200], "amount": 200}'))
-    print(euler031(coins=[1,2,5,10,20,50,100,200], amount=200, callback=lambda c: logging.debug(format_combo(c))))
+    print(
+        euler031(coins=[1, 2, 5, 10, 20, 50, 100, 200], amount=200, callback=lambda c: logging.debug(format_combo(c))))

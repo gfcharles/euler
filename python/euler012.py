@@ -20,12 +20,14 @@ What is the value of the first triangle number to have over five hundred divisor
 """
 from typing import Generator
 
-from euler import euler_problem
 from common.euler_lib import count_factors
+from euler import euler_problem
+
 
 @euler_problem()
-def euler012(n:int|str) -> int:
+def euler012(n: int | str) -> int:
     return next(filter(lambda t_num: count_factors(t_num) > int(n), triangle_num_gen()))
+
 
 def triangle_num_gen() -> Generator[int, None, None]:
     counter = 0

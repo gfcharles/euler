@@ -20,9 +20,11 @@ example given the player actually wins £9.
 
 Find the maximum prize fund that should be allocated to a single game in which fifteen turns are played.
 """
+
+
 @euler_problem()
 # @euler_problem(logging_level=logging.DEBUG,timing=True)
-def euler121(n:int|str) -> int:
+def euler121(n: int | str) -> int:
     n = int(n)
     winning_combos = count_winning_combos(n)
     total_combos = math.factorial(n + 1)
@@ -32,7 +34,7 @@ def euler121(n:int|str) -> int:
     return total_combos // winning_combos
 
 
-def count_winning_combos(n:int) -> int:
+def count_winning_combos(n: int) -> int:
     """
     Counts the number of winning combinations in a game with n turns, given that a win means more successes
     than failures.
@@ -47,7 +49,8 @@ def count_winning_combos(n:int) -> int:
 
     return sum(count_k_failures_for_n_turns(n, k) for k in range(max_failures + 1))
 
-def count_k_failures_for_n_turns(n:int, k:int) -> int:
+
+def count_k_failures_for_n_turns(n: int, k: int) -> int:
     """
     Counts the number of ways to get exactly k failures in n turns. If each turn had equal probability of success,
     this would just be (n choose k). However, since each trial has a turn / (turn + 1) probability of failure,
@@ -59,7 +62,8 @@ def count_k_failures_for_n_turns(n:int, k:int) -> int:
     """
     return sum(prod(key) for key in itertools.combinations(range(1, n + 1), k))
 
-def prod(it:Iterable[int]) -> int:
+
+def prod(it: Iterable[int]) -> int:
     return reduce(lambda x, y: x * y, it, 1)
 
 

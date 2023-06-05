@@ -20,15 +20,16 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler057(n:int|str) -> int:
-    numerator, denominator = 3,2
+def euler057(n: int | str) -> int:
+    numerator, denominator = 3, 2
     count = 0
-    for i in range(2,int(n) + 1):
+    for i in range(2, int(n) + 1):
         numerator, denominator = numerator + 2 * denominator, numerator + denominator
         if len(str(numerator)) > len(str(denominator)):
             count += 1
-        
+
     return count
+
 
 if __name__ == '__main__':
     print(euler057(8))

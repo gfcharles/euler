@@ -25,9 +25,10 @@ import string
 
 from euler import euler_problem
 
+
 # @euler_problem(logging_level=logging.DEBUG, timing=True)
 @euler_problem()
-def euler059(filename:str) -> int:
+def euler059(filename: str) -> int:
     cipher_text = read_file(filename)
 
     # For each possible key, decrypt the cipher text and see if we have an English plain text message.
@@ -39,14 +40,15 @@ def euler059(filename:str) -> int:
             return sum(map(ord, plain_text))
 
 
-def read_file(filename:str) -> list[int]:
+def read_file(filename: str) -> list[int]:
     """
      Reads the encrypted message from the file, which is a comma-separated list of encrypted ASCII values.
     """
     with open(f'./euler_data/{filename}') as data_file:
         return list(map(int, data_file.read().split(',')))
 
-def decrypt(values:list[int], key:list[chr]) -> str:
+
+def decrypt(values: list[int], key: list[chr]) -> str:
     """
     Decrypts the array of ASCII values representing the cipher text.
     Returns the plain text as a string
@@ -56,11 +58,13 @@ def decrypt(values:list[int], key:list[chr]) -> str:
 
     return ''.join(chr(value ^ key_values[i % key_length]) for i, value in enumerate(values))
 
+
 def is_english_text(text):
     """
     Basic test to see if the text is probably English. False positive and negatives are possible.
     """
     return re.search(' the ', text) or re.search(' and ', text)
+
 
 if __name__ == '__main__':
     print(euler059('0059_cipher.txt'))

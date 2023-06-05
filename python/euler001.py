@@ -8,8 +8,9 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler001(n: int|str) -> int:
+def euler001(n: int | str) -> int:
     return sum(x for x in range(int(n)) if x % 3 == 0 or x % 5 == 0)
+
 
 if __name__ == '__main__':
     print(euler001(10))

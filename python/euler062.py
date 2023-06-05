@@ -12,7 +12,7 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler062(n:int|str) -> int:
+def euler062(n: int | str) -> int:
     n = int(n)
     cubes = defaultdict(set)
 

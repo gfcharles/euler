@@ -9,8 +9,8 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler020(n:int|str) -> int:
-    return sum(map(int, str(reduce(lambda x, y : x * y, range(1, int(n) + 1)))))
+def euler020(n: int | str) -> int:
+    return sum(map(int, str(reduce(lambda x, y: x * y, range(1, int(n) + 1)))))
 
 
 if __name__ == '__main__':

@@ -17,10 +17,12 @@ def euler022(filename) -> int:
         names = sorted(nm.strip('"') for nm in names_file.readline().split(","))
         return sum(positional_name_value(idx + 1, n) for idx, n in enumerate(names))
 
-def positional_name_value(pos: int,  name:str) -> int:
+
+def positional_name_value(pos: int, name: str) -> int:
     return pos * name_value(name)
 
-def name_value(name:str) -> int:
+
+def name_value(name: str) -> int:
     return sum(map(lambda c: ord(c) - ord('A') + 1, name))
 
 

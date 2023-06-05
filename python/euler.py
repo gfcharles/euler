@@ -4,7 +4,7 @@ from time import time
 
 
 def euler_problem(logging_level=None, timing=False):
-    def format_params(args, kwargs):
+    def format_params(args, _):
         return ','.join(map(str, args))
 
     """
@@ -16,6 +16,7 @@ def euler_problem(logging_level=None, timing=False):
     Timing and logging can be enabled separately. If timing is True and logging is off, timing info
     will print to standard out. Otherwise, it will appear as a log with level INFO.
     """
+
     def outer(function):
         def inner(*args, **kwargs):
             if logging_level:
@@ -34,20 +35,26 @@ def euler_problem(logging_level=None, timing=False):
                 return result
             else:
                 return function(*args, **kwargs)
+
         return inner
+
     return outer
+
 
 def config_logging():
     logging.config.fileConfig("config/logging.conf")
 
+
 def config_paths():
     pass
+
 
 def config_all():
     config_paths()
     config_logging()
 
-def config_log_level(level:int):
+
+def config_log_level(level: int):
     logging.basicConfig(
         level=level,
         format='%(levelname)s [%(filename)s - %(funcName)s():%(lineno)s] %(message)s')

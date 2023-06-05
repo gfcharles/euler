@@ -1,14 +1,16 @@
 """
 Base class for Euler problem that takes integer input and returns integer result
 """
-from unittest import TestCase
-from time import time
-from common.data_loader import load_solutions
 import logging
+from time import time
+from unittest import TestCase
+
+from common.data_loader import load_solutions
 from euler import config_logging
 
 config_logging()
 solutions = load_solutions()
+
 
 def timing_decorator(function):
     def timing(*args, **kwargs):
@@ -18,6 +20,7 @@ def timing_decorator(function):
         class_name = type(args[0]).__name__
         logging.info(f'{class_name}.{function.__name__} completed in {(end - start) * 1000:.1f} ms')
         return result
+
     return timing
 
 
@@ -59,7 +62,6 @@ class TestEuler(object):
 
         self.assertEqual(self.data.sample_out, str(result))
         logging.info(f'Result for problem {self.problem_number}: {result}')
-
 
     @timing_decorator
     def test_challenge(self):

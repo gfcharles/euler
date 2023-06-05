@@ -11,7 +11,6 @@ known that the greatest number that cannot be expressed as the sum of two abunda
 
 Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 """
-import logging
 from functools import cache
 
 from common.euler_lib import proper_factors
@@ -21,8 +20,9 @@ MINIMUM_ABUNDANT_NUMBER = 12
 
 
 @euler_problem()
-def euler023(n: int|str) -> int:
+def euler023(n: int | str) -> int:
     return sum(x for x in range(1, int(n) + 1) if not is_sum_of_two_abundant_numbers(x))
+
 
 @cache
 def is_abundant(n: int) -> bool:
@@ -38,6 +38,7 @@ def is_abundant(n: int) -> bool:
     if n < MINIMUM_ABUNDANT_NUMBER:
         return False
     return sum(proper_factors(n)) > n
+
 
 def is_sum_of_two_abundant_numbers(n: int):
     if n < 2 * MINIMUM_ABUNDANT_NUMBER:

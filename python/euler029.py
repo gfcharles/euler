@@ -16,9 +16,10 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler029(n:int|str) -> int:
+def euler029(n: int | str) -> int:
     n = int(n)
     return len(set(a ** b for a in range(2, n + 1) for b in range(2, n + 1)))
+
 
 if __name__ == '__main__':
     print(euler029(5))

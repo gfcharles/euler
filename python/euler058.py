@@ -16,7 +16,6 @@ If one complete new layer is wrapped around the spiral above, a square spiral wi
 If this process is continued, what is the side length of the square spiral for which the ratio of primes along both
 diagonals first falls below 10%?
 """
-import logging
 
 from common.euler_lib import is_prime
 from euler import euler_problem
@@ -24,21 +23,22 @@ from euler import euler_problem
 
 # @euler_problem(logging_level=logging.DEBUG, timing=True)
 @euler_problem()
-def euler058(n:float|str) -> int:
+def euler058(n: float | str) -> int:
     side = 3
     diagonal_count = 5
     prime_count = 3
 
-    while  prime_count >= float(n) * diagonal_count:
+    while prime_count >= float(n) * diagonal_count:
         side += 2
         diagonal_count += 4
         square = side * side
-    
+
         for i in range(1, 4):
             if is_prime(square - i * (side - 1)):
                 prime_count += 1
 
     return side
+
 
 if __name__ == '__main__':
     print(euler058(0.10))

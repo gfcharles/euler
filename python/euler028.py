@@ -15,7 +15,7 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler028(n:int|str) -> int:
+def euler028(n: int | str) -> int:
     # Sort of a tricksy solution. The sum of the diagonals can be thought of as the sum of the corners of the
     # concentric square, each with an odd number of elements per side, and dimension two smaller tha square it nests in.
     # For example, the 5x5 square shown above has a 3x3 square nested inside of it, and that has a 1x1 square
@@ -31,7 +31,8 @@ def euler028(n:int|str) -> int:
     if n < 1 or n % 2 == 0:
         raise Exception(f"Input parameter {n} is not a positive odd integer.")
 
-    return sum(4 * x ** 2  - 6 * x + 6 for x in range(3, n + 1, 2)) + 1
+    return sum(4 * x ** 2 - 6 * x + 6 for x in range(3, n + 1, 2)) + 1
+
 
 if __name__ == '__main__':
     print(euler028(5))

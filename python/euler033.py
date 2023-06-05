@@ -11,20 +11,22 @@ If the product of these four fractions is given in its lowest common terms, find
 """
 import logging
 from functools import reduce
+from math import gcd
 from typing import Tuple
 
-from math import gcd
 import euler
+
 
 @euler.euler_problem()
 def euler033(_='n/a') -> int:
     numerator, denominator = \
         reduce(lambda total, element: multiply_tuples(total, element),
-            ((a, b) for a in range(10, 100) for b in range(a + 1, 100) if test_reduction(a, b)))
+               ((a, b) for a in range(10, 100) for b in range(a + 1, 100) if test_reduction(a, b)))
 
     return denominator // gcd(numerator, denominator)
 
-def test_reduction(a:int, b:int) -> bool:
+
+def test_reduction(a: int, b: int) -> bool:
     digits_a = a // 10, a % 10
     digits_b = b // 10, b % 10
 
@@ -46,7 +48,8 @@ def test_reduction(a:int, b:int) -> bool:
 
     return False
 
-def multiply_tuples(x:Tuple[int,int], y:Tuple[int,int]) -> Tuple:
+
+def multiply_tuples(x: Tuple[int, int], y: Tuple[int, int]) -> Tuple:
     return tuple(z[0] * z[1] for z in zip(x, y))
 
 

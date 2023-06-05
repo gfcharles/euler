@@ -19,8 +19,9 @@ from functools import cache
 
 from euler import euler_problem
 
+
 @euler_problem()
-def euler014(n:int|str) -> int:
+def euler014(n: int | str) -> int:
     n = int(n)
     max_collatz = 0
     max_x = None
@@ -52,6 +53,7 @@ def collatz_count(n):
 
     return count
 
+
 # Caching with recursion is the best approach here, since all chains will share some part of their tails.
 @cache
 def collatz_count_r(n):
@@ -62,6 +64,7 @@ def collatz_count_r(n):
         return 1 + collatz_count_r(n // 2)
     else:
         return 1 + collatz_count_r(3 * n + 1)
+
 
 if __name__ == '__main__':
     print(euler014(10))

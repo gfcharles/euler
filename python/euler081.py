@@ -10,14 +10,15 @@ from typing import Tuple
 from euler import euler_problem
 
 sample_data = \
-"""131,673,234,103,18
-201,96,342,965,150
-630,803,746,422,111
-537,699,497,121,956
-805,732,524,37,331"""
+    """131,673,234,103,18
+    201,96,342,965,150
+    630,803,746,422,111
+    537,699,497,121,956
+    805,732,524,37,331"""
+
 
 @euler_problem()
-def euler081(file_name:str) -> int:
+def euler081(file_name: str) -> int:
     if file_name == 'sample':
         text = sample_data
     else:
@@ -34,7 +35,7 @@ def euler081(file_name:str) -> int:
     return data[-1][-1]
 
 
-def get_by_slice(dimension:int) -> list[Tuple[int,int]]:
+def get_by_slice(dimension: int) -> list[Tuple[int, int]]:
     for n in range(2 * dimension - 1):
         if n < dimension:
             for i in range(n + 1):
@@ -42,6 +43,7 @@ def get_by_slice(dimension:int) -> list[Tuple[int,int]]:
         else:
             for i in range(1, 2 * dimension - n):
                 yield dimension - i, n - dimension + i
+
 
 def get_min_parent(coordinates, data):
     x, y = coordinates

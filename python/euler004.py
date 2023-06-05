@@ -10,7 +10,7 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler004(n:int|str) -> int:
+def euler004(n: int | str) -> int:
     # Reset counter for diagnostics
     is_palindrome.counter = 0
 
@@ -31,6 +31,7 @@ def euler004(n:int|str) -> int:
 
     logging.info(f"Total palindrome tests for {digits} digits was {is_palindrome.counter}")
     return max_found
+
 
 def is_palindrome(input_value) -> bool:
     is_palindrome.counter += 1

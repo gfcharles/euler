@@ -17,12 +17,14 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler030(n:int|str) -> int:
+def euler030(n: int | str) -> int:
     n = int(n)
     return sum(x for x in range(10, get_upper_bound(n)) if is_sum_of_digits(x, n))
 
-def is_sum_of_digits(n:int, power:int):
+
+def is_sum_of_digits(n: int, power: int):
     return n == sum(map(lambda digit: (int(digit)) ** power, str(n)))
+
 
 # Establishes a rough upper bound for possibilities. It's not an optimal bound,
 # but it is guaranteed to be higher than the max possible based on power.

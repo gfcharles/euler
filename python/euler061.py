@@ -33,31 +33,33 @@ from euler import euler_problem
 
 # @euler_problem(timing=True, logging_level=logging.DEBUG)
 @euler_problem()
-def euler061(polygon_types:str) -> int:
+def euler061(polygon_types: str) -> int:
     poly_fnc_list = fnc_list_for_types(polygon_types)
 
     # Sort by descending sides to reduce search paths.
-    poly_fnc_list.sort(key = lambda fnc: -poly.sides_map[fnc])
+    poly_fnc_list.sort(key=lambda fnc: -poly.sides_map[fnc])
 
     return find_sum_of_cycle(poly_fnc_list)
+
 
 def fnc_list_for_types(polygon_types: str):
     return list(map(lambda pt: eval(f'poly.{pt.strip()}'), polygon_types.split(',')))
 
+
 class PolygonValue:
-    def __init__(self, value:int, polygon_fnc:typing.Callable):
-        self.value:int = value
-        self.type:typing.Callable = polygon_fnc
+    def __init__(self, value: int, polygon_fnc: typing.Callable):
+        self.value: int = value
+        self.type: typing.Callable = polygon_fnc
 
     def __repr__(self):
         return f'({self.type.__name__}, {self.value})'
 
-    def __str__( self ):
+    def __str__(self):
         return repr(self)
 
 
 @cache
-def values_in_range(fnc:typing.Callable[[int], int], lower:int, upper:int) -> list[int]:
+def values_in_range(fnc: typing.Callable[[int], int], lower: int, upper: int) -> list[int]:
     """
     Return list of values of the function that fall in the range lower (inclusive) to upper (exclusive)
     """
@@ -69,11 +71,13 @@ def values_in_range(fnc:typing.Callable[[int], int], lower:int, upper:int) -> li
                   )
     )
 
-def is_conflict(polygon_values:list[PolygonValue], fnc:typing.Callable[[int], int], value:int) -> bool:
+
+def is_conflict(polygon_values: list[PolygonValue], fnc: typing.Callable[[int], int], value: int) -> bool:
     return any(pv.type == fnc or pv.value == value for pv in polygon_values)
 
 
-def build_cycle(fnc_list:list[typing.Callable[[int],int]], target_length:int, polygon_list:list[PolygonValue]) -> bool:
+def build_cycle(fnc_list: list[typing.Callable[[int], int]], target_length: int,
+                polygon_list: list[PolygonValue]) -> bool:
     lower, upper = 1000, 10000
     if len(polygon_list) > 0:
         digits_to_match = polygon_list[-1].value % 100
@@ -87,7 +91,8 @@ def build_cycle(fnc_list:list[typing.Callable[[int],int]], target_length:int, po
             if not is_conflict(polygon_list, fnc, value):
                 polygon_list.append(PolygonValue(value, fnc))
 
-                if (target_length == len(polygon_list)) and (polygon_list[0].value // 100) == (polygon_list[-1].value % 100):
+                if (target_length == len(polygon_list)) and (polygon_list[0].value // 100) == (
+                        polygon_list[-1].value % 100):
                     return True
                 if len(polygon_list) < target_length and build_cycle(fnc_list, target_length, polygon_list):
                     return True
@@ -96,7 +101,8 @@ def build_cycle(fnc_list:list[typing.Callable[[int],int]], target_length:int, po
 
     return False
 
-def find_sum_of_cycle(fnc_list:list[typing.Callable[[int], int]]) -> int:
+
+def find_sum_of_cycle(fnc_list: list[typing.Callable[[int], int]]) -> int:
     polygon_list = list()
     if build_cycle(fnc_list, len(fnc_list), polygon_list):
         logging.debug(f'Cycle = {polygon_list}')

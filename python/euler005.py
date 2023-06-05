@@ -9,12 +9,12 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler005(n:int|str) -> int:
+def euler005(n: int | str) -> int:
     return lcm_of_list(list(range(2, int(n) + 1)))
 
 
 # Recursively split the list to reduce the number of lcm computations.
-def lcm_of_list(number_list:list) -> int:
+def lcm_of_list(number_list: list) -> int:
     length = len(number_list)
     if length == 0:
         # Normally this won't happen
@@ -49,7 +49,7 @@ def gcd(a: int, b: int) -> int:
     while True:
         if a == b:
             return a
-        
+
         if a < b:
             a, b = b - a, a
         else:

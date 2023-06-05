@@ -20,10 +20,11 @@ from euler import euler_problem
 
 
 @euler_problem()
-def euler038(_:str = 'n/a') -> int:
+def euler038(_: str = 'n/a') -> int:
     for p in itertools.permutations("987654321"):
         if int(''.join(p[0:4])) * 2 == int("".join(p[4:9])):
             return int(''.join(p))
+
 
 if __name__ == '__main__':
     print(euler038())
