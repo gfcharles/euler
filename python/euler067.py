@@ -1,4 +1,4 @@
-'''
+"""
 By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from
 top to bottom is 23.
 
@@ -15,23 +15,22 @@ containing a triangle with one-hundred rows.
 NOTE: This is a much more difficult version of Problem 18. It is not possible to try every route to solve this problem,
 as there are 299 altogether! If you could check one trillion (1012) routes every second it would take over twenty
 billion years to check them all. There is an efficient algorithm to solve it. ;o)
+"""
+from euler018 import find_max_path
+from euler import euler_problem
 
-Created on Jan 30, 2011
 
-@author: Greg Charles
-'''
-import gregutils
+@euler_problem()
+def euler067(filename: str) -> int:
+    # Read data in from file
+    with open(f'./euler_data/{filename}', 'r') as datafile:
+        triangle = datafile.read()
+        rows = []
+        for row in triangle.splitlines():
+            rows.append(list(int(el) for el in row.strip().split(' ')))
 
-# Read data in from file
-rows = []
-f = open(gregutils.dataDir() + "triangle067.dat")
-for line in f:
-    rows.append(map(int, line.split(' ')))
+        return find_max_path(rows)
 
-# Working up from the bottom, add each value in a row to the maximum of the two values below it.
-for row in range(len(rows)-1,0,-1):
-    for i in range(0, len(rows[row])-1):
-        rows[row-1][i] += max(rows[row][i], rows[row][i+1])
 
-print rows[0][0]
-  
+if __name__ == '__main__':
+    print(euler067('0067_triangle.txt'))

@@ -70,13 +70,17 @@ def euler018(s: str) -> int:
     for row in triangle.splitlines():
         rows.append(list(int(el) for el in row.strip().split(' ')))
 
+    return find_max_path(rows)
+
+
+def find_max_path(triangle_rows) -> int:
     # Working up from the bottom, add each value in a row to the maximum of the two values below it.
     # noinspection DuplicatedCode
-    for row in range(len(rows) - 1, 0, -1):
-        for i in range(0, len(rows[row]) - 1):
-            rows[row - 1][i] += max(rows[row][i], rows[row][i + 1])
+    for row in range(len(triangle_rows) - 1, 0, -1):
+        for i in range(0, len(triangle_rows[row]) - 1):
+            triangle_rows[row - 1][i] += max(triangle_rows[row][i], triangle_rows[row][i + 1])
 
-    return rows[0][0]
+    return triangle_rows[0][0]
 
 
 if __name__ == '__main__':

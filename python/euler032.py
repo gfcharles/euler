@@ -12,10 +12,10 @@ import itertools
 import logging
 from typing import Tuple
 
-import euler
+from euler import euler_problem
 
 
-@euler.euler_problem()
+@euler_problem()
 def euler032(_='n/a') -> int:
     product_set = set()
     for p in itertools.permutations('123456789'):
@@ -55,5 +55,4 @@ def is_product(factor_1: int, factor_2: int, product: int) -> bool:
 
 
 if __name__ == '__main__':
-    euler.config_log_level(logging.DEBUG)
     print(euler032())

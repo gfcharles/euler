@@ -1,7 +1,7 @@
-'''
+"""
 Consider quadratic Diophantine equations of the form:
 
-x2 - Dy2 = 1
+x^2 - Dy^2 = 1
 
 For example, when D=13, the minimal solution in x is 6492 - 13 x 1802 = 1.
 
@@ -18,88 +18,40 @@ By finding minimal solutions in x for D = {2, 3, 5, 6, 7}, we obtain the followi
 Hence, by considering minimal solutions in x for D <= 7, the largest x is obtained when D=5.
 
 Find the value of D <= 1000 in minimal solutions of x for which the largest value of x is obtained.
+"""
+import logging
 
-Created on Jan 30, 2011
-
-@author: Greg Charles
-'''
-import math
-from fractions import Fraction
-
-class ContinuedFraction(object):
-
-    def __init__(self, value):
-        self.value = value
-        self.base = self.__computeBase(value)
-        self.list = self.__computeList(value, self.base)
-        self.period = len(self.list)
-
-    def __computeBase(self,value):
-        return int(math.floor(math.sqrt(value)))
-
-    def __computeList(self, s, base):
-        mdList = []
-        aList = []
-        m, d, a = 0,1,base
-
-        finished = (base * base == s)
-
-        while not finished:
-            m = d * a - m
-            d = (s - m*m) / d
-            md = [m,d]
-            if md in mdList:
-                finished = True
-            else:
-                mdList.append(md)
-                a = int(math.floor((base + m) / d))
-                aList.append(a)
-
-        return aList
-
-    def convergents(self):
-        hList = [self.base, self.list[0]*self.base + 1]
-        kList = [1, self.list[0]]
-
-        yield Fraction(hList[0], kList[0])
-        yield Fraction(hList[1], kList[1])
-
-        n = 1
-        while True:
-            i = n % self.period
-            h = self.list[i] * hList[-1] + hList[-2]
-            k = self.list[i] * kList[-1] + kList[-2]
-            hList.append(h)
-            kList.append(k)
-            n += 1
-            yield Fraction(h,k)
-
-    def __str__( self ):
-        string = 'sqrt(' + str(self.value) + ') = [' + str(self.base)
-        if self.period > 0:
-            string += '; ('
-            string += ','.join(map(str,self.list))
-            string += ')'
-        string += '], period = ' + str(self.period)
-
-        return string
+from common.continued_fraction import cf_for_sqrt
+from euler import euler_problem
 
 
-def checkDiophantine(x,y,D):
-    return x * x - D * y * y == 1
+#
+# x = sqrt(D y^2 + 1) so x/y is slightly less than sqrt(D). Therefore, we can use the Diophantine convergents
+# of sqrt(D) to find solution candidates.
+#
+@euler_problem()
+def euler066(n: int | str) -> int:
+    answer = (0 , 0, 0)
+    for D in range(1, int(n) + 1):
+        try:
+            cf = cf_for_sqrt(D)
+            for convergent in cf.convergents():
+                x, y = convergent.numerator, convergent.denominator
+                if check_diophantine(x, y, D):
+                    if x > answer[0]:
+                        answer = (x, y, D)
+                    break
+        except ValueError:
+            logging.debug(f'Skipping perfect square: {D}')
 
-answer = [0,0,0]
+    logging.debug(f'answer [x,y,D] = {answer}')
+    return answer[2]
 
-for D in xrange(1,1001):
-    cf = ContinuedFraction(D)
-    if cf.period > 0:
-        for convergent in cf.convergents():
-            x, y = convergent.numerator, convergent.denominator
-            if checkDiophantine(x, y, D):
-                print x, y, D
-                if x > answer[0]:
-                    answer = [x,y,D]
-                break
 
-print 'answer [x,y,D] = ', answer
+def check_diophantine(x: int, y: int, d: int) -> bool:
+    return x * x - d * y * y == 1
 
+
+if __name__ == '__main__':
+    print(euler066(7))
+    print(euler066(1000))

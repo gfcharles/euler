@@ -1,59 +1,41 @@
-'''
+"""
+All square roots are periodic when written as continued fractions and can be written in the form:
+sqrt(n) = a0 + (1 / (a1 + (1 /  ...
+
+
+(The full problem statement is difficult to reproduce in plain text. See https://projecteuler.net/problem=64 )
+
+Exactly four continued fractions, for N <= 13 have an odd period.
 How many continued fractions for N ≤ 10000 have an odd period?
+"""
+import common.continued_fraction as cf
 
-Created on Jan. 20, 2011
-
-@author: Greg Charles
-'''
-import math
-
-class ContinuedFraction(object):
-
-    def __init__(self, value):
-        self.value = value
-        self.base = self.computeBase(value)
-        self.list = self.computeList(value, self.base)
-        self.period = len(self.list)
-
-    def computeBase(self,value):
-        return int(math.floor(math.sqrt(value)))
-
-    def computeList(self, s, base):
-        mdList = []
-        aList = []
-        m, d, a = 0,1,base
-
-        finished = (base * base == s)
-
-        while not finished:
-            m = d * a - m
-            d = (s - m*m) / d
-            md = [m,d]
-            if md in mdList:
-                finished = True
-            else:
-                mdList.append(md)
-                a = int(math.floor((base + m) / d))
-                aList.append(a)
-
-        return aList
-
-    def __str__( self ):
-        string = 'sqrt(' + str(self.value) + ') = [' + str(self.base)
-        if (self.period > 0):
-            string += '; ('
-            string += ','.join(map(str,self.list))
-            string += ')'
-        string += '], period = ' + str(self.period)
-
-        return string
+from euler import euler_problem
 
 
-counter = 0
-for s in xrange(2,10001):
-    cf = ContinuedFraction(s)
-#    print cf
-    if cf.period % 2 == 1:
-        counter += 1
+@euler_problem()
+def euler064(n: int | str) -> int:
+    max_value = int(n)
 
-print counter
+    # starting values
+    counter = 0
+    value, base = 1, 0
+
+    while value <= max_value:
+        if (base + 1) ** 2 == value:
+            base += 1
+        else:
+            frac = cf.cf_for_sqrt(value, base=base)
+
+            # Increment counter if period is odd.
+            if frac.period  % 2 == 1:
+                counter += 1
+
+        value += 1
+
+    return counter
+
+
+if __name__ == '__main__':
+    print(euler064(13))
+    print(euler064(10_000))

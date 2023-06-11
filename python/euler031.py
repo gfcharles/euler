@@ -14,7 +14,6 @@ import logging
 from typing import Tuple, Callable
 
 from euler import euler_problem
-from euler024 import extract
 
 
 @euler_problem()
