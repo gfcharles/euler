@@ -1,6 +1,9 @@
 from functools import cache
 
+from euler import euler_problem
 
+
+@euler_problem()
 def euler097(problem_input: str) -> int:
     # Parse the input
     expression, digits = problem_input.split(';')
@@ -22,12 +25,12 @@ def parse_term(term: str):
 
 # Basic algorithm for computing modulos of very large numbers. However, it's not noticeably different in time
 # from just letting Python work it out.
-def compute_mod(coefficient, base, exp, addend, modulo):
+def compute_mod(coefficient: int, base: int, exp: int, addend: int, modulo: int) -> int:
     return ((coefficient % modulo) * compute_mod_for_base_and_exp(base, exp, modulo) + addend) % modulo
 
 
 @cache
-def compute_mod_for_base_and_exp(base, exp, modulo):
+def compute_mod_for_base_and_exp(base: int, exp: int, modulo: int) -> int:
     if exp == 1:
         return base % modulo
 
